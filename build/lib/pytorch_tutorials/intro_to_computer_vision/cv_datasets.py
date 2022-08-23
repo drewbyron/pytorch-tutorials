@@ -2,33 +2,23 @@
 # Date: 7/23/22.
 # Description of Module:
 
+# Standard imports.
+import numpy as np
+from skimage.draw import line_aa
+
 # Deep learning imports.
 import torch
 from torch import nn
-import torch.nn.functional as F
-from torch.utils.data import DataLoader, random_split, TensorDataset
 
 import torchvision
 from torchvision.utils import draw_bounding_boxes, draw_segmentation_masks, make_grid
 from torchvision.ops import masks_to_boxes
 import torchvision.transforms.functional as TF
-from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
-from torchvision.models.detection.mask_rcnn import MaskRCNNPredictor
 
-import pytorch_lightning as pl
+from torch.utils.data import DataLoader, random_split, TensorDataset
 
-import torchmetrics
 from torchmetrics.detection.mean_ap import MeanAveragePrecision
 
-# Standard imports.
-from typing import List, Union
-import gc
-import matplotlib.pyplot as plt
-import numpy as np
-import cv2
-
-# Necessary for creating our images.
-from skimage.draw import line_aa
 
 # TODOs:
 # * Recomment the class_map.

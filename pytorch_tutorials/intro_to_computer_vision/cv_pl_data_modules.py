@@ -20,11 +20,11 @@ import pytorch_lightning as pl
 import torchmetrics
 from torchmetrics.detection.mean_ap import MeanAveragePrecision
 
-# Standard imports. 
+# Standard imports.
 from typing import List, Union
 import gc
 import matplotlib.pyplot as plt
-import numpy as np 
+import numpy as np
 import cv2
 
 # Necessary for creating our images.
@@ -32,7 +32,7 @@ from skimage.draw import line_aa
 import pytorch_lightning as pl
 
 # Local imports
-from intro_to_cv_with_pytorch.cv_datasets import (
+from .cv_datasets import (
     ObjectCounting_DS,
     ImageSegmentation_DS,
     ObjectDetection_DS,

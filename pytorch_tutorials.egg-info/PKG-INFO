@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: pytorch-tutorials
+Version: 0.2.7
+Summary: A resource for learning about PyTorch and deep learning.
+Home-page: https://github.com/drewbyron/pytorch-tutorials
+Author: William (Drew) Byron
+Author-email: william.andrew.byron@gmail.com
+License: MIT License
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+License-File: LICENSE.txt
+
+UNKNOWN
+

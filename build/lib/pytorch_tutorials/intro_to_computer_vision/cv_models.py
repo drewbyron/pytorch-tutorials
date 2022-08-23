@@ -5,30 +5,15 @@
 # Deep learning imports.
 import torch
 from torch import nn
-import torch.nn.functional as F
-from torch.utils.data import DataLoader, random_split, TensorDataset
 
 import torchvision
 from torchvision.utils import draw_bounding_boxes, draw_segmentation_masks, make_grid
 from torchvision.ops import masks_to_boxes
 import torchvision.transforms.functional as TF
-from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
-from torchvision.models.detection.mask_rcnn import MaskRCNNPredictor
 
-import pytorch_lightning as pl
+from torch.utils.data import DataLoader, random_split, TensorDataset
 
-import torchmetrics
 from torchmetrics.detection.mean_ap import MeanAveragePrecision
-
-# Standard imports.
-from typing import List, Union
-import gc
-import matplotlib.pyplot as plt
-import numpy as np
-import cv2
-
-# Necessary for creating our images.
-from skimage.draw import line_aa
 
 
 class DoubleConv(nn.Module):
@@ -80,7 +65,7 @@ class DoubleConv(nn.Module):
 class ObjectCounter(nn.Module):
     """An object counting model that uses multiple conv layers and then
     two fully connected layers to determine how many instances of different
-    classes of objects are in an image.
+    classes of objects (shapes) are in an image.
 
     Args:
         img_size (int): model will take images of shape
@@ -107,7 +92,7 @@ class ObjectCounter(nn.Module):
         in_channels=3,
         num_classes=3,
         features=[16, 32],
-        fc_intermediate_size=10,
+        fc_intermiate_size=10,
         kernel_size=3,
         bias=True,
     ):
@@ -118,7 +103,7 @@ class ObjectCounter(nn.Module):
         self.in_channels = in_channels
         self.num_classes = num_classes
         self.features = features
-        self.fc_intermediate_size = fc_intermediate_size
+        self.fc_intermiate_size = fc_intermiate_size
         self.kernel_size = kernel_size
         self.bias = True
 
@@ -133,8 +118,8 @@ class ObjectCounter(nn.Module):
 
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
         self.relu = nn.ReLU()
-        self.fc1 = nn.Linear(self.fc_in_size, self.fc_intermediate_size)
-        self.fc2 = nn.Linear(self.fc_intermediate_size, self.num_classes)
+        self.fc1 = nn.Linear(self.fc_in_size, self.fc_intermiate_size)
+        self.fc2 = nn.Linear(self.fc_intermiate_size, self.num_classes)
         self.feature_extractor = nn.ModuleList()
 
         # Feature extractor
@@ -255,62 +240,3 @@ class UNET(nn.Module):
         x = self.final_conv(x)
 
         return x
-
-
-def get_fasterrcnn(num_classes=4, pretrained=True):
-    """A function for loading the PyTorch implimentation of FasterRCNN.
-    See here for documentation on the input and output specifics:
-    https://pytorch.org/vision/stable/models/faster_rcnn.html
-
-    Args:
-        num_classes (int): number of output classes desired.
-        pretrained (bool): whether or not to load a model pretrained on the
-    """
-
-    # load Faster RCNN pre-trained model
-    if pretrained:
-        model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights="DEFAULT")
-    else:
-        model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights=None)
-
-    # get the number of input features
-    in_features = model.roi_heads.box_predictor.cls_score.in_features
-    # define a new head for the detector with required number of classes
-    model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
-
-    return model
-
-
-def get_maskrcnn(num_classes=4, pretrained=True):
-    """A function for loading the PyTorch implimentation of MaskRCNN.
-    See here for documentation on the input and output specifics:
-    https://pytorch.org/vision/0.12/generated/torchvision.models.detection.maskrcnn_resnet50_fpn.html
-
-    Args:
-        num_classes (int): number of output classes desired.
-        pretrained (bool): whether or not to load a model pretrained on the
-    """
-
-    if pretrained:
-        model = torchvision.models.detection.maskrcnn_resnet50_fpn(weights="DEFAULT")
-    else:
-        model = torchvision.models.detection.maskrcnn_resnet50_fpn(weights=None)
-
-    if num_classes != -1: 
-        
-        # Get number of input features for the classifier.
-        in_features = model.roi_heads.box_predictor.cls_score.in_features
-
-        # Replace the pre-trained box predictor head with a new one.
-        model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
-
-        # Now get the number of input features for the mask classifier.
-        in_features_mask = model.roi_heads.mask_predictor.conv5_mask.in_channels
-
-        hidden_layer = 256
-        # Replace the pre-trained mask predictor head with a new one.
-        model.roi_heads.mask_predictor = MaskRCNNPredictor(
-            in_features_mask, hidden_layer, num_classes
-        )
-
-    return model
