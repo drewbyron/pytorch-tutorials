@@ -1,24 +1,12 @@
-<p align="center"><img width="10%" src="/images/logos/pytorch_logo.png" /></p>
+<p align="center"><img width="15%" src="/images/logos/pytorch_logo.png" /></p>
 
 --------------------------------------------------------------------------------
 
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Open In Youtube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg) ![](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white) ![](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue) ![](https://img.shields.io/badge/PyTorch Lightning-792EE5?style=for-the-badge&logo=PyTorch Lightning&logoColor=white)
 
 # pytorch-tutorials
 In this repository you will find tutorials and projects related to Machine Learning. I try to make the code as clear as possible, and the goal is be to used as a learning resource and a way to lookup problems to solve specific problems. For most I have also done video explanations on YouTube if you want a walkthrough for the code. If you got any questions or suggestions for future videos I prefer if you ask it on [YouTube](https://www.youtube.com/c/AladdinPersson). This repository is contribution friendly, so if you feel you want to add something then I'd happily merge a PR :smiley:
-
-## Table Of Contents
-- [Intro to Computer Vision](#machine-learning)
-- [PyTorch Tutorials](#pytorch-tutorials)
-	- [Basics](#basics)
-	- [More Advanced](#more-advanced)
-    - [Object Detection](#Object-Detection)
-	- [Generative Adversarial Networks](#Generative-Adversarial-Networks)
-	- [Architectures](#architectures)
-- [TensorFlow Tutorials](#tensorflow-tutorials)
-	- [Beginner Tutorials](#beginner-tutorials)
-	- [Architectures](#CNN-Architectures)
 
 
 ## Intro to Computer Vision with Pytorch
