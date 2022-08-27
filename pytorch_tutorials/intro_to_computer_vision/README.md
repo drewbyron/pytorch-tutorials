@@ -20,12 +20,12 @@
 
 
 ## Table of Contents  
--[cv_datasets](#datasets)  
-	-[Draw](#draw)
-	-[CV_DS_Base](#base)
--[cv_pl_data_modules](#pl_data_modules)  
--[cv_models](#models)  
--[cv_utility](#utility)  
+- [cv_datasets](#datasets)  
+	- [Draw](#draw)
+	- [CV_DS_Base](#base)
+- [cv_pl_data_modules](#pl_data_modules)  
+- [cv_models](#models)  
+- [cv_utility](#utility)  
 
 
 <!-- <a name="datasets"/>
