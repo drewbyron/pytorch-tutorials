@@ -16,11 +16,15 @@
 --------------------------------------------------------------------------------
 
 # pytorch-tutorials
-In this repository you will find tutorials aimed at helping people get up to speed with pytorch and pytorch lightning. Links to the relavent docs and associated youtube channel and pypi project can be found above. For each video in the youtube series there is an associated colab notebook (links below). I highly encourage people to make a copy of the nb you can edit and follow along with it while watching the video. My idea with this project was to make small configurable datasets that would enable people (and myself) to get started gaining intuition for how to train bigger models (FasterRCNN, MaskRCNN,...) without needing to run on a cluster or train for a week to see how things work. The idea is that the colab notebooks walk through everything and then the functions we make in the colab nbs are all found in the [pypi](https://pypi.org/project/pytorch-tutorials/) package so that people can easily start making their own sandbox to play around in. 
+
+
+## Summary 
+
+In this repository you will find tutorials aimed at helping people get up to speed with pytorch and pytorch lightning. Links to the relavent docs and associated youtube channel and pypi project can be found above. For each video in the youtube series there is an associated colab notebook (links below). I highly encourage people to make a copy of the nb you can edit and follow along with it while watching the video. My idea with this project was to make small configurable datasets that would enable people (and myself) to get started gaining intuition for how to train bigger models (FasterRCNN, MaskRCNN,...) without needing to run on a cluster or train for a week to see how things work. The idea is that the colab notebooks walk through everything and then the classes and utility functions we make in the colab notebooks are all found in the [pypi](https://pypi.org/project/pytorch-tutorials/) package so that people can easily make their own sandbox to play around in. 
 
 My ultimate intent is to have a little series for all of the pytorch libraries (vision, text, audio,..) but for now it's just vision. 
 
-I hope this is useful to you! Please comment on youtube if you have suggestions for how this project and associated package could be more useful to people.  
+I hope this is useful to you! Please comment on youtube if you have corrections/comments or suggestions for how to make this project and associated package more useful. Thanks!
 
 
 ## Intro to Computer Vision with Pytorch
@@ -47,6 +51,14 @@ Summary:
 * [![Youtube Link][logo]](https://youtu.be/NJvojeoTnNM) &nbsp; [Neural Network](https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/algorithms/neuralnetwork/NN.py)
 * [Decision Tree](https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/algorithms/decisiontree/decision_tree.py)
 
-## PyTorch Tutorials
-If you have any specific video suggestion please make a comment on YouTube :)
+## How to Reach Me
+
+* If you have any suggestions for how to make this resource more useful please comment on the youtube channel. 
+* If something in the package is broken please submit an [issue](https://github.com/drewbyron/pytorch-tutorials/issues) on github.
+* For other stuff reach out over linked
+
+--------------------------------------------------------------------------------
+[![]https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white](www.linkedin.com/in/drew-byron)
+[![]https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white](https://github.com/drewbyron/pytorch-tutorials)
+
 

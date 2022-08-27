@@ -221,7 +221,7 @@ def display_masks_unet(imgs, masks, class_map, alpha=0.4):
     return result_imgs
 
 
-def display_boxes(imgs, target_pred_dict, class_map, width, fill=False):
+def display_boxes(imgs, target_pred_dict, class_map, width = 1, fill=False):
     """
     Takes a list of images and a list of target or prediction dictionaries
     of the same len and overlays bounding boxes onto the images.
