@@ -6,7 +6,7 @@
 
 --------------------------------------------------------------------------------
 
-<p align="center"><img width="40%" src="/images/intro_to_cv/mt_rainier_seg_0.JPG" />       <img width="40%" src="/images/intro_to_cv/mt_rainier_seg_1.JPG" /></p>
+<p align="center"><img width="40%" src="/images/intro_to_cv/mt_rainier_seg_0.JPG" />              <img width="40%" src="/images/intro_to_cv/mt_rainier_seg_1.JPG" /></p>
 
 --------------------------------------------------------------------------------
 <p align="center"><img width="80%" src="/images/intro_to_cv//mask_rcnn_ds.png" /></p>
@@ -30,7 +30,7 @@
 
 <a name="datasets"/>
 
-## cv_datasets
+## [cv_datasets](https://github.com/drewbyron/pytorch-tutorials/blob/main/pytorch_tutorials/intro_to_computer_vision/cv_datasets.py)
 
 --- 
 **class Draw:**
