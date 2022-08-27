@@ -14,6 +14,10 @@
 
 --------------------------------------------------------------------------------
 
+[youtube_logo]: /images/logos/youtube_logo.png
+<!--  https://github.com/AladdinPerzon/Machine-Learning-<!-- Collection -->/blob/master/ML/others/logo/youtube_logo.png -->
+
+
 # pytorch-tutorials
 
 
@@ -40,11 +44,12 @@ I hope this is useful to you! Please comment on youtube if you have corrections/
 
 ### Part 0: Summary and Introduction
 
-* [![](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+* [![][youtube_logo](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg) FIX THIS
 * [Intro to Computer Vision Documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
 
 ### Part 1: Object Counting
 
+* [![][youtube_logo](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
 * [![](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
 
