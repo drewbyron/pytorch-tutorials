@@ -1,11 +1,11 @@
-<p align="center"><img width="100%" src="/figures/logos/pytorch_logo.png" /></p>
+<p align="center"><img width="25%" src="/images/logos/pytorch_logo.png" /></p>
 
 --------------------------------------------------------------------------------
 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# Machine Learning Collection
+# pytorch-tutorials
 In this repository you will find tutorials and projects related to Machine Learning. I try to make the code as clear as possible, and the goal is be to used as a learning resource and a way to lookup problems to solve specific problems. For most I have also done video explanations on YouTube if you want a walkthrough for the code. If you got any questions or suggestions for future videos I prefer if you ask it on [YouTube](https://www.youtube.com/c/AladdinPersson). This repository is contribution friendly, so if you feel you want to add something then I'd happily merge a PR :smiley:
 
 ## Table Of Contents
