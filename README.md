@@ -3,24 +3,24 @@
 --------------------------------------------------------------------------------
 
 
-
-[![](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white)](https://pytorch.org/docs/stable/index.html)
 [![](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)](https://docs.python.org/3.9/)
+[![](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white)](https://pytorch.org/docs/stable/index.html)
 [![](https://img.shields.io/badge/PyTorchLightning-792EE5?style=for-the-badge&logo=PyTorchLightning&logoColor=white)](https://pytorch-lightning.readthedocs.io/en/stable/)
-
---------------------------------------------------------------------------------
-
 [![Open In Youtube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg) 
 [![](https://img.shields.io/badge/pypi-3775A9?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/pytorch-tutorials/)
-
 
 --------------------------------------------------------------------------------
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
+--------------------------------------------------------------------------------
 
 # pytorch-tutorials
-In this repository you will find tutorials and projects related to Machine Learning. I try to make the code as clear as possible, and the goal is be to used as a learning resource and a way to lookup problems to solve specific problems. For most I have also done video explanations on YouTube if you want a walkthrough for the code. If you got any questions or suggestions for future videos I prefer if you ask it on [YouTube](https://www.youtube.com/c/AladdinPersson). This repository is contribution friendly, so if you feel you want to add something then I'd happily merge a PR :smiley:
+In this repository you will find tutorials aimed at helping people get up to speed with pytorch and pytorch lightning. Links to the relavent docs and associated youtube channel and pypi project can be found above. For each video in the youtube series there is an associated colab notebook (links below). I highly encourage people to make a copy of the nb you can edit and follow along with it while watching the video. My idea with this project was to make small configurable datasets that would enable people (and myself) to get started gaining intuition for how to train bigger models (FasterRCNN, MaskRCNN,...) without needing to run on a cluster or train for a week to see how things work. The idea is that the colab notebooks walk through everything and then the functions we make in the colab nbs are all found in the [pypi](https://pypi.org/project/pytorch-tutorials/) package so that people can easily start making their own sandbox to play around in. 
+
+My ultimate intent is to have a little series for all of the pytorch libraries (vision, text, audio,..) but for now it's just vision. 
+
+I hope this is useful to you! Please comment on youtube if you have suggestions for how this project and associated package could be more useful to people.  
 
 
 ## Intro to Computer Vision with Pytorch
