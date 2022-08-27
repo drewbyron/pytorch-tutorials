@@ -15,7 +15,7 @@
 
 
 
-##### Table of Contents  
+### Table of Contents  
 [Summary](#summary)  
 [Intro to Computer Vision](#cv)  
 [How to Reach Me](#me) 
@@ -49,7 +49,7 @@ Summary:
 
 * If you have any suggestions for how to make this resource more useful please comment on the youtube channel. 
 * If something in the package is broken please submit an [issue](https://github.com/drewbyron/pytorch-tutorials/issues) on github.
-* For all other stuff or to just say hi reach out over [linked-in](www.linkedin.com/in/drew-byron), I'm not big on social media. 
+* For work stuff or to just say hi reach out over [linked-in](www.linkedin.com/in/drew-byron); I'm not big on social media. 
 
 --------------------------------------------------------------------------------
 [![](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/drew-byron)
