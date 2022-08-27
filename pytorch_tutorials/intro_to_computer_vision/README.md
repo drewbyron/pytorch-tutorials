@@ -19,20 +19,20 @@
 # Intro to Computer Vision Documentation
 
 
-### Table of Contents  
-[cv_datasets](#datasets)  
-	[Draw](#draw)
-	[CV_DS_Base](#base)
-[cv_pl_data_modules](#pl_data_modules)  
-[cv_models](#models)  
-[cv_utility](#utility)  
+## Table of Contents  
+-[cv_datasets](#datasets)  
+	-[Draw](#draw)
+	-[CV_DS_Base](#base)
+-[cv_pl_data_modules](#pl_data_modules)  
+-[cv_models](#models)  
+-[cv_utility](#utility)  
 
 
-<a name="datasets"/>
-
+<!-- <a name="datasets"/>
+ -->
 ## [cv_datasets](https://github.com/drewbyron/pytorch-tutorials/blob/main/pytorch_tutorials/intro_to_computer_vision/cv_datasets.py)
 
-<a name="draw"/>
+<!-- <a name="draw"/> -->
 
 ### class Draw:
 
@@ -47,7 +47,7 @@ img_size (int): draws onto 2d array of shape (img_size, img_size).
 rng (Generator): used for enabling deterministic behaviour. Example
     of valid rng: rng = np.random.default_rng(12345)
 
-<a name="base"/>
+<!-- <a name="base"/> -->
 
 ### class CV_DS_Base(torch.utils.data.Dataset):
 
