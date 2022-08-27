@@ -2,7 +2,6 @@
 
 --------------------------------------------------------------------------------
 
-
 <p align="center"><img width="50%" src="/images/logos/pytorch_tutorials_logo.png" /></p>
 
 --------------------------------------------------------------------------------
@@ -16,21 +15,17 @@
 
 [youtube_logo]: /images/logos/youtube_logo.png
 
-
-
 # pytorch-tutorials
-
-
 
 ### Table of Contents  
 - [Summary](#Summary)  
 - [Intro to Computer Vision](#Intro-to-Computer-Vision)  
-	- [Part 0:Summary and Introduction](#Summary-and-Introduction)
-	- [Part 1: Object Counting](#Object-Counting)
-	- [Part 2:Image Segmentation with UNET](#Image-Segmentation-with-UNET)
-	- [Part 3:Image Segmentation with UNET](#Image-Segmentation-with-UNET)
-	- [Part 4:Image Segmentation with UNET](#Image-Segmentation-with-UNET)
-	- [Part 5:Applying Mask RCNN in the Wild](Applying-Mask-RCNN-in-the-Wild)
+	- [Part 0: Summary and Introduction](#Summary-and-Introduction)
+	- [Part 1: Object Counting with CNNs](#Object-Counting-with-CNNs)
+	- [Part 2: Image Segmentation with UNET](#Image-Segmentation-with-UNET)
+	- [Part 3: Object Detection with Faster RCNN](#Object-Detection-with-Faster-RCNN)
+	- [Part 4: Object Detection with Mask RCNN](#Object-Detection-with-Mask-RCNN)
+	- [Part 5: Applying Mask RCNN in the Wild](#Applying-Mask-RCNN-in-the-Wild)
 - [How to Reach Me](#How-to-Reach-Me) 
 
 
@@ -47,7 +42,7 @@ I hope this is useful to you! Please comment on youtube if you have corrections/
 
 ### Summary and Introduction
 
-* Estimated time commitment: 
+* Estimated time commitment: FILL IN 
 * [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
 * [Intro to Computer Vision Documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
 
@@ -59,29 +54,29 @@ I hope this is useful to you! Please comment on youtube if you have corrections/
 ### Image Segmentation with UNET
 
 * [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
-* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
+* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/136quz_ISw1b5sOj7wUC2WiVQca6iR-wR?usp=sharing)
 
 ### Object Detection with Faster RCNN
 
 * [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
-* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
+* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1IGhNjysjbbchjQO19ta-frpNG3DDS_uV?usp=sharing)
 
 ### Object Detection with Mask RCNN
 
 * [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
-* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
+* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1bIU6kMxGtzcr5vnBxkM3bWyEaHZJzepD?usp=sharing)
 
 ### Applying Mask RCNN in the Wild
 
 * [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
-* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
+* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1YaM6HN3IlLLy5tzWN7QCPi3ayKrIMJUp?usp=sharing)
 
 
 ## How to Reach Me
 
 * If you have any suggestions for how to make this resource more useful please comment on the youtube channel. 
 * If something in the package is broken please submit an [issue](https://github.com/drewbyron/pytorch-tutorials/issues) on github.
-* For work stuff or to just say hi reach out over [linked-in](www.linkedin.com/in/drew-byron); I'm not big on social media. 
+* For work stuff or to just say hi reach out over [linked-in](www.linkedin.com/in/drew-byron). 
 
 --------------------------------------------------------------------------------
 [![](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/drew-byron)

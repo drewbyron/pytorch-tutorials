@@ -30,12 +30,6 @@ import cv2
 # Necessary for creating our images.
 from skimage.draw import line_aa
 
-# TODOs:
-# * Recomment the class_map.
-# * Comment out Draw.
-# * Reformat to match new base class. Get this working before commenting everything.
-# * Test it all out in the different nbs.
-
 
 class Draw:
     """
