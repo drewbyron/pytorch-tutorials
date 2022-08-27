@@ -19,11 +19,12 @@
 
 
 ### Table of Contents  
-[Summary](#summary)  
-[Intro to Computer Vision](#cv)  
-[How to Reach Me](#me) 
+- [Summary](#Summary)  
+- [Intro to Computer Vision](#Intro-to-Computer-Vision)  
+	- [Summary and Introduction](#Part-0:-Summary-and-Introduction)
+	- [Part 1: Object Counting](#Part-1:-Object-Counting)
+- [How to Reach Me](#How-to-Reach-Me) 
 
-<a name="summary"/>
 
 ## Summary 
 
@@ -37,16 +38,16 @@ I hope this is useful to you! Please comment on youtube if you have corrections/
 
 ## Intro to Computer Vision
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
-[![Open In Youtube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
-Associated Documentation: [Series Documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
+### Part 0: Summary and Introduction
 
-Summary: 
- 
-[documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
+* [![](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+* [Intro to Computer Vision Documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
 
+### Part 1: Object Counting
 
-<a name="me"/>
+* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
+* [![](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+
 
 ## How to Reach Me
 

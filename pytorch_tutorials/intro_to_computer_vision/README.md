@@ -22,10 +22,10 @@
 ## Table of Contents  
 - [cv_datasets](#cv_datasets)  
 	- [Draw](#class-Draw)
-	- [CV_DS_Base](#class-CV_DS_Base))
+	- [CV_DS_Base](#class-CV_DS_Base)
 	- [ObjectCounting_DS](#class-ObjectCounting_DS)
 	- [ImageSegmentation_DS](#class-ImageSegmentation_DS)
-	- [ObjectDetection_DS](#class-ObjectDetection_DS)]
+	- [ObjectDetection_DS](#class-ObjectDetection_DS)
 - [cv_pl_data_modules](#pl_data_modules)  
 - [cv_models](#models)  
 - [cv_utility](#utility)  
