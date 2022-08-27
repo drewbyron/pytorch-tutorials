@@ -306,13 +306,15 @@ class UNET(nn.Module):
 
 
 def get_fasterrcnn(num_classes=4, pretrained=True):
+
     """A function for loading the PyTorch implimentation of FasterRCNN.
+    To not have predictor changed at all set num_classes = -1.
     See here for documentation on the input and output specifics:
     https://pytorch.org/vision/stable/models/faster_rcnn.html
 
     Args:
         num_classes (int): number of output classes desired.
-        pretrained (bool): whether or not to load a model pretrained on the
+        pretrained (bool): whether or not to load a model pretrained on the COCO dataset. 
     """
 
     # load Faster RCNN pre-trained model
@@ -321,22 +323,24 @@ def get_fasterrcnn(num_classes=4, pretrained=True):
     else:
         model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights=None)
 
-    # get the number of input features
-    in_features = model.roi_heads.box_predictor.cls_score.in_features
-    # define a new head for the detector with required number of classes
-    model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
+    if num_classes != -1:
+        # get the number of input features
+        in_features = model.roi_heads.box_predictor.cls_score.in_features
+        # define a new head for the detector with required number of classes
+        model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
 
     return model
 
 
 def get_maskrcnn(num_classes=4, pretrained=True):
     """A function for loading the PyTorch implimentation of MaskRCNN.
+    To not have predictor changed at all set num_classes = -1.
     See here for documentation on the input and output specifics:
     https://pytorch.org/vision/0.12/generated/torchvision.models.detection.maskrcnn_resnet50_fpn.html
 
     Args:
         num_classes (int): number of output classes desired.
-        pretrained (bool): whether or not to load a model pretrained on the
+        pretrained (bool): whether or not to load a model pretrained on the COCO dataset. 
     """
 
     if pretrained:
