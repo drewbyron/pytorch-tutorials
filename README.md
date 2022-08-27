@@ -27,7 +27,7 @@
 
 ## Summary 
 
-In this repository you will find tutorials aimed at helping people get up to speed with pytorch and pytorch lightning. Links to the relavent docs and associated youtube channel and pypi project can be found above. For each video in the youtube series there is an associated colab notebook (links below). I highly encourage people to make a copy of the nb you can edit and follow along with it while watching the video. My idea with this project was to make small configurable datasets that would enable people (and myself) to get started gaining intuition for how to train bigger models (FasterRCNN, MaskRCNN,...) without needing to run on a cluster or train for a week to see how things work. The idea is that the colab notebooks walk through everything and then the classes and utility functions we make in the colab notebooks are all found in the [pypi](https://pypi.org/project/pytorch-tutorials/) package so that people can easily make their own sandbox to play around in. 
+In this repository you will find tutorials aimed at helping people get up to speed with pytorch and pytorch lightning. Links to the relavent docs and associated youtube channel and pypi project can be found in the badges above. For each video in the youtube series there is an associated colab notebook (links below). I highly encourage people to make a copy of the nb you can edit and follow along with it while watching the video. My idea with this project was to make small configurable datasets that would enable people (and myself) to get started gaining intuition for how to train bigger models (FasterRCNN, MaskRCNN,...) without needing to run on a cluster or train for a week to see how things work. The idea is that the colab notebooks walk through everything and then the classes and utility functions we make in the colab notebooks are all found in the [pypi](https://pypi.org/project/pytorch-tutorials/) package so that people can easily make their own sandbox to play around in. 
 
 My ultimate intent is to have a little series for all of the pytorch libraries (vision, text, audio,..) but for now it's just vision. 
 
@@ -62,3 +62,5 @@ Summary:
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
 
+--------------------------------------------------------------------------------
+*Note: This project is not affiliated with pytorch in any way.*

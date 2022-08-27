@@ -6,7 +6,7 @@
 
 --------------------------------------------------------------------------------
 
-<p align="center"><img width="50%" src="/images/intro_to_cv/mt_rainier_seg_1.JPG" /></p>
+<p align="center"><img width="50%" src="/images/intro_to_cv/mt_rainier_seg_0.JPG" /><img width="50%" src="/images/intro_to_cv/mt_rainier_seg_1.JPG" /></p>
 
 --------------------------------------------------------------------------------
 <p align="center"><img width="80%" src="/images/intro_to_cv//mask_rcnn_ds.png" /></p>
