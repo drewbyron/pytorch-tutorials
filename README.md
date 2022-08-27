@@ -11,13 +11,16 @@
 
 --------------------------------------------------------------------------------
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
-
---------------------------------------------------------------------------------
-
 # pytorch-tutorials
 
 
+
+##### Table of Contents  
+[Summary](#summary)  
+[Intro to Computer Vision](#cv)  
+
+
+<a name="summary"/>
 ## Summary 
 
 In this repository you will find tutorials aimed at helping people get up to speed with pytorch and pytorch lightning. Links to the relavent docs and associated youtube channel and pypi project can be found above. For each video in the youtube series there is an associated colab notebook (links below). I highly encourage people to make a copy of the nb you can edit and follow along with it while watching the video. My idea with this project was to make small configurable datasets that would enable people (and myself) to get started gaining intuition for how to train bigger models (FasterRCNN, MaskRCNN,...) without needing to run on a cluster or train for a week to see how things work. The idea is that the colab notebooks walk through everything and then the classes and utility functions we make in the colab notebooks are all found in the [pypi](https://pypi.org/project/pytorch-tutorials/) package so that people can easily make their own sandbox to play around in. 
@@ -26,8 +29,8 @@ My ultimate intent is to have a little series for all of the pytorch libraries (
 
 I hope this is useful to you! Please comment on youtube if you have corrections/comments or suggestions for how to make this project and associated package more useful. Thanks!
 
-
-## Intro to Computer Vision with Pytorch
+<a name="cv"/>
+## Intro to Computer Vision
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
 [![Open In Youtube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
@@ -55,10 +58,13 @@ Summary:
 
 * If you have any suggestions for how to make this resource more useful please comment on the youtube channel. 
 * If something in the package is broken please submit an [issue](https://github.com/drewbyron/pytorch-tutorials/issues) on github.
-* For other stuff reach out over linked
+* For all other stuff or to just say hi reach out over [linked-in](www.linkedin.com/in/drew-byron), I'm not big on social media. 
 
 --------------------------------------------------------------------------------
-[![]https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white](www.linkedin.com/in/drew-byron)
-[![]https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white](https://github.com/drewbyron/pytorch-tutorials)
+[![](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/drew-byron)
+[![](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/drewbyron/pytorch-tutorials)
+
+--------------------------------------------------------------------------------
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
 
