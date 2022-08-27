@@ -1,4 +1,4 @@
-<p align="center"><img width="25%" src="/images/logos/pytorch_logo.png" /></p>
+<p align="center"><img width="10%" src="/images/logos/pytorch_logo.png" /></p>
 
 --------------------------------------------------------------------------------
 
@@ -23,9 +23,11 @@ In this repository you will find tutorials and projects related to Machine Learn
 
 ## Intro to Computer Vision with Pytorch
 
-* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
-* [![Open In Youtube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
-* [Series Documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
+[![Open In Youtube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+Associated Documentation: [Series Documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
+
+Summary: 
 
 
 ## Intro to Computer Vision: 
