@@ -3,6 +3,9 @@
 --------------------------------------------------------------------------------
 
 
+<p align="center"><img width="60%" src="/images/logos/pytorch_tutorials_logo.png" /></p>
+
+--------------------------------------------------------------------------------
 [![](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)](https://docs.python.org/3.9/)
 [![](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white)](https://pytorch.org/docs/stable/index.html)
 [![](https://img.shields.io/badge/PyTorchLightning-792EE5?style=for-the-badge&logo=PyTorchLightning&logoColor=white)](https://pytorch-lightning.readthedocs.io/en/stable/)
