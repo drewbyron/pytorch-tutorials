@@ -16,13 +16,13 @@
 --------------------------------------------------------------------------------
 
 
---------------------------------------------------------------------------------
-
 # Intro to Computer Vision Documentation
 
 
 ### Table of Contents  
 [cv_datasets](#datasets)  
+	[Draw](#draw)
+	[CV_DS_Base](#base)
 [cv_pl_data_modules](#pl_data_modules)  
 [cv_models](#models)  
 [cv_utility](#utility)  
@@ -32,8 +32,9 @@
 
 ## [cv_datasets](https://github.com/drewbyron/pytorch-tutorials/blob/main/pytorch_tutorials/intro_to_computer_vision/cv_datasets.py)
 
---- 
-**class Draw:**
+<a name="draw"/>
+
+### class Draw:
 
 Class used to draw shapes onto images. Methods return coordinates of
 corresponding shape on a 2d np array of shape (img_size, img_size).
@@ -46,8 +47,9 @@ img_size (int): draws onto 2d array of shape (img_size, img_size).
 rng (Generator): used for enabling deterministic behaviour. Example
     of valid rng: rng = np.random.default_rng(12345)
 
----
-**class CV_DS_Base(torch.utils.data.Dataset):**
+<a name="base"/>
+
+### class CV_DS_Base(torch.utils.data.Dataset):
 
 Base class for a set of PyTorch computer vision datasets. This class
 contains all of the attributes and methods common to all datasets
