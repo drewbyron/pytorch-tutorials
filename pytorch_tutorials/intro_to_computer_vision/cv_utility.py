@@ -21,6 +21,7 @@ import torchmetrics
 from torchmetrics.detection.mean_ap import MeanAveragePrecision
 
 # Standard imports.
+from pathlib import Path
 from typing import List, Union
 import gc
 import matplotlib.pyplot as plt
@@ -312,7 +313,7 @@ def display_masks_rcnn(imgs, target_pred_dict, class_map, threshold=0.5, alpha=0
         draw_segmentation_masks(
             imgs[i],
             target_pred_dict[i]["masks"],
-            alpha=0.4,
+            alpha=alpha,
             colors=[
                 class_map[j.item()]["target_color"]
                 for j in target_pred_dict[i]["labels"]
@@ -324,9 +325,38 @@ def display_masks_rcnn(imgs, target_pred_dict, class_map, threshold=0.5, alpha=0
     return result_imgs
 
 
-def add_labels(imgs, target_pred_dict, class_map, text_size, text_width):
+def display_labels(imgs, target_pred_dict, class_map, text_size, text_width):
     """
-    TODO: DOCUMENT.
+    Takes a list of images and a list of target or prediction dictionaries
+    of the same len and adds labels to the instances. Note that for very
+    small images this will behave poorly.
+
+    Args:
+        imgs (List[torch.ByteTensor[3, H, W]]): list of images (each a
+            torch.ByteTensor of shape(3, H, W)).
+
+        target_pred_dict (List[Dict[torch.Tensor]]): predictions or targets
+            formatted according to the torchvision implimentation of
+            FasterRCNN and MaskRCNN.
+            See link below for details on the target/prediction formatting.
+            https://pytorch.org/vision/0.12/_modules/torchvision/models/detection/mask_rcnn.html
+
+        class_map (Dict[Dict]): the class map must contain keys that
+            correspond to the labels provided. Inner Dict must contain
+            key "target_color". class 0 is reserved for background.
+            class_map={
+            0: {"name": "background","target_color": (255, 255, 255),},
+            1: {"name": "rectangle", "target_color": (255, 0, 0)},
+            2: {"name": "line", "target_color": (0, 255, 0)},
+            3: {"name": "donut", "target_color": (0, 0, 255)}}.
+
+        text size (int): size of instance label text.
+
+        text_width (int): width of instance label text.
+
+    Returns:
+        labeled_imgs (List[torch.ByteTensor[3, H, W]]): list of images with
+            overlaid instance labels.
     """
 
     labeled_imgs = []
@@ -390,7 +420,19 @@ def threshold_pred_masks(preds, threshold=0.5):
 
 def build_coco_class_map(seed, drop_background=True):
     """
-    TODO: DOCUMENT.
+    Returns a class_map for coco classes.
+
+    Args:
+        seed (int): seed to use to build np rng. Can change this to get
+            a new set of colors.
+        drop_background (bool): If true the background class (assigned
+            class_id = 0 by default) will be dropped from the class map.
+            This is the default because in displaying the segmented images
+            often one doesn't care to display background.
+
+    Returns:
+        coco_class_map (Dict[Dict]): class_map to be used with other functions
+            in this module.
     """
 
     COCO_CLASS_NAMES = [
@@ -514,9 +556,9 @@ def apply_score_cut(preds, score_threshold=0.5):
 
     Args:
         preds (List[Dict[torch.Tensor]]): predictions as output by the
-            torchvision implimentation of MaskRCNN. The scores are in the
-            range (0,1) and signify the certainty of the model for that
-            instance.
+            torchvision implimentation of MaskRCNN or FasterRCNN. The 
+            scores are in the range (0,1) and signify the certainty of 
+            the model for that instance.
             See link below for details on the target/prediction formatting.
             https://pytorch.org/vision/0.12/_modules/torchvision/models/detection/mask_rcnn.html
         score_threshold (float): the threshold to apply to the identified
@@ -537,12 +579,24 @@ def apply_score_cut(preds, score_threshold=0.5):
 
 def load_img_dir(path, resize_factor=0.5):
     """
-    TODO: DOCUMENT.
+    Loads all of the images in a directory into torch images.
+
+    Args:
+        path (str): path should point to a directory that only contains
+            .JPG images. Or any image type compatible with cv2.imread().
+
+        resize_factor (float): how to resize the image. Often one would
+            like to reduce the size of the images to be easier/faster to
+            use with our maskrcnn model.
+
+    Returns:
+        imgs (List[torch.ByteTensor[3, H, W]]): list of images (each a
+            torch.ByteTensor of shape(3, H, W)).
     """
     path_glob = Path(path).glob("**/*")
     files = [x for x in path_glob if x.is_file()]
     if len(files) == 0:
-        raise UserWarning("No files detected at the input path.")
+        raise UserWarning("No files found at the input path.")
 
     imgs = []
     for file in files:
@@ -558,7 +612,23 @@ def load_img_dir(path, resize_factor=0.5):
 
 def get_preds(imgs, maskrcnn, device):
     """
-    TODO: DOCUMENT.
+    Simple utility function for returning the predictions of maskrcnn model.
+    This deals with putting the model and imgs on device and normalizing
+    torch.ByteTensor.
+
+    Args:
+        maskrcnn (nn.Module): an instance of the torchvision Mask RCNN
+            model. One can build with following call: maskrcnn =
+            cv_models.get_maskrcnn(num_classes=-1, pretrained=True)
+
+        device (str): what device to put model and imgs. Use following
+            call: device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    Returns:
+        preds (List[Dict[torch.Tensor]]): predictions as output by the
+            torchvision implimentation of MaskRCNN.
+            See link below for details on the target/prediction formatting.
+            https://pytorch.org/vision/0.12/_modules/torchvision/models/detection/mask_rcnn.html
     """
 
     maskrcnn = maskrcnn.to(device)
@@ -572,12 +642,23 @@ def get_preds(imgs, maskrcnn, device):
 
 def save_imgs(imgs, base_path, base_name):
     """
-    Needs to be byte tensor.
+    Saves torch images to JPG file format.
+
+    Args:
+        imgs (List[torch.ByteTensor[3, H, W]]): list of images (each a
+            torch.ByteTensor of shape(3, H, W)).
+
+        base_path (str): path to directory where images should be written.
+
+        base_name (str): base name to be used to build JPG file paths.
+
+    Returns:
+        None
     """
     base_path = Path(base_path)
     for i, img in enumerate(imgs):
 
-        file_path = base_path / Path(base_name + f"_{i}" + ".jpg")
+        file_path = base_path / Path(base_name + f"_{i}" + ".JPG")
 
         ndarr_img = img.permute(1, 2, 0).cpu().numpy()
         ndarr_img = cv2.cvtColor(ndarr_img, cv2.COLOR_BGR2RGB)
@@ -586,19 +667,60 @@ def save_imgs(imgs, base_path, base_name):
     return None
 
 
-def instance_seg_process_images(imgs, predictions, config):
+def maskrcnn_process_images(imgs, preds, class_map, config):
     """
-    TODO: DOCUMENT.
+    Processes a set of imgs and associated predictions.
+
+    Args:
+        imgs (List[torch.ByteTensor[3, H, W]]): list of images (each a
+            torch.ByteTensor of shape(3, H, W)).
+
+        preds (List[Dict[torch.Tensor]]): predictions as output by the
+            torchvision implimentation of MaskRCNN.
+            See link below for details on the target/prediction formatting.
+            https://pytorch.org/vision/0.12/_modules/torchvision/models/detection/mask_rcnn.html
+
+        class_map (Dict[Dict]): the class map must contain keys that
+            correspond to the labels provided. Inner Dict must contain
+            key "target_color". class 0 is reserved for background.
+            class_map={
+            0: {"name": "background","target_color": (255, 255, 255),},
+            1: {"name": "rectangle", "target_color": (255, 0, 0)},
+            2: {"name": "line", "target_color": (0, 255, 0)},
+            3: {"name": "donut", "target_color": (0, 0, 255)}}.
+
+        config (Dict): a config dictionary that contains info on how to
+            process the imgs. Example below. Must contain all keys included
+            in the example:
+            config = {"boxes": True,
+                      "masks": True,
+                      "labels": True,
+                      "score_cut": .5,
+                      "box_width": 2,
+                      "box_fill" : False,
+                      "mask_threshold": .5,
+                      "mask_alpha": .5,
+                      "label_size": 1,
+                      "label_width": 1}
+
+    Returns:
+        processed_imgs (List[torch.ByteTensor[3, H, W]]): list of processed
+            images (each a torch.ByteTensor of shape(3, H, W)).
     """
 
-    preds_cut = apply_score_cut(predictions, config["score_cut"])
+    if len(config) != 10:
+        raise UserWarning(
+            "config dictionary must conain all 10 elements included in the documentation."
+        )
+
+    preds_cut = apply_score_cut(preds, config["score_cut"])
 
     processed_imgs = imgs
     if config["boxes"]:
         processed_imgs = display_boxes(
             processed_imgs,
             preds_cut,
-            coco_class_map,
+            class_map,
             width=config["box_width"],
             fill=config["box_fill"],
         )
@@ -606,15 +728,15 @@ def instance_seg_process_images(imgs, predictions, config):
         processed_imgs = display_masks_rcnn(
             processed_imgs,
             preds_cut,
-            coco_class_map,
+            class_map,
             threshold=config["mask_threshold"],
             alpha=config["mask_alpha"],
         )
     if config["labels"]:
-        processed_imgs = add_labels(
+        processed_imgs = display_labels(
             processed_imgs,
             preds_cut,
-            coco_class_map,
+            class_map,
             text_size=config["label_size"],
             text_width=config["label_width"],
         )
@@ -622,22 +744,73 @@ def instance_seg_process_images(imgs, predictions, config):
     return processed_imgs
 
 
-def instance_seg_process_video(
+def maskrcnn_process_video(
     raw_video_path,
     processed_video_path,
-    config,
     device,
-    maskrcnn_model,
+    maskrcnn,
+    class_map,
+    config,
     output_shape=(700, 700),
-    show_first_frame=True,
+    show_first_frame=False,
     frame_max=1e4,
     fps=30,
 ):
     """
-    TODO: DOCUMENT.
-    """
+    Processes a .MOV, adding segmentation, labels, and/or bboxes and
+    writes out a processed version of the original .MOV
 
-    print("Video exists at given raw_video_path: ", Path(raw_video_path).is_file())
+    Args:
+
+        raw_video_path (str): path to raw .MOV file. Should work with any
+            file type compatible with cv2.VideoCapture.
+
+        processed_video_path (str): path where processed video will be
+            written.
+
+        device (str): what device to put model and imgs. Use following
+            call: device = "cuda" if torch.cuda.is_available() else "cpu"
+
+        maskrcnn (nn.Module): an instance of the torchvision Mask RCNN
+            model. One can build with following call: maskrcnn =
+            cv_models.get_maskrcnn(num_classes=-1, pretrained=True)
+
+        class_map (Dict[Dict]): the class map must contain keys that
+            correspond to the labels provided. Inner Dict must contain
+            key "target_color". class 0 is reserved for background.
+            class_map={
+            0: {"name": "background","target_color": (255, 255, 255),},
+            1: {"name": "rectangle", "target_color": (255, 0, 0)},
+            2: {"name": "line", "target_color": (0, 255, 0)},
+            3: {"name": "donut", "target_color": (0, 0, 255)}}.
+
+        config (Dict): a config dictionary that contains info on how to
+            process the imgs. Example below. Must contain all keys included
+            in the example:
+            config = {"boxes": True,
+                      "masks": True,
+                      "labels": True,
+                      "score_cut": .5,
+                      "box_width": 2,
+                      "box_fill" : False,
+                      "mask_threshold": .5,
+                      "mask_alpha": .5,
+                      "label_size": 1,
+                      "label_width": 1}
+
+        output_shape (tuple[int,int]): size of the ouput video.
+        show_first_frame (bool): used to sanity check. Set to true to see the
+            result of first frame.
+        frame_max (int): used to limit the time this takes and to sanity
+            check things. Set to 10 to be sure things are working.
+        fps (int): frames per second of video. Default for google photos
+            is 30.
+
+    Returns:
+        None
+    """
+    if not Path(raw_video_path).is_file():
+        raise UserWarning("No file found at raw_video_path.")
 
     # Capture for reading raw video.
     cap = cv2.VideoCapture(str(raw_video_path))
@@ -646,7 +819,7 @@ def instance_seg_process_video(
     out = cv2.VideoWriter(
         str(processed_video_path),
         cv2.VideoWriter_fourcc("M", "J", "P", "G"),
-        30,
+        fps,
         output_shape,
     )
 
@@ -657,10 +830,10 @@ def instance_seg_process_video(
     frame_count = 0
     # Read until video is completed
     while cap.isOpened():
+
         # Capture frame-by-frame
         ret, frame = cap.read()
-        # print(frame.shape)
-        if ret == True:
+        if ret:
 
             # resize frame to match output_shape
             resized_frame = cv2.resize(frame, output_shape)
@@ -668,12 +841,13 @@ def instance_seg_process_video(
             img = torch.from_numpy(img).permute(2, 0, 1)
 
             imgs = [img]
-            preds = get_preds(imgs, maskrcnn_model, device)
+            preds = get_preds(imgs, maskrcnn, device)
 
-            processed_imgs = instance_seg_process_images(imgs, preds, config)
+            # Process the frames one at a time.
+            processed_imgs = maskrcnn_process_images(imgs, preds, class_map, config)
 
             if frame_count == 0 and show_first_frame:
-                cv_utility.show(processed_imgs)
+                show(processed_imgs)
 
             ndarr_img = processed_imgs[0].permute(1, 2, 0).cpu().numpy()
             ndarr_img = cv2.cvtColor(ndarr_img, cv2.COLOR_BGR2RGB)
@@ -688,7 +862,7 @@ def instance_seg_process_video(
         else:
             break
 
-    print(f"Frames processed:{frame_count}")
+    print(f"Processed {frame_count} total frames.")
 
     # Release the video writer object.
     out.release()
@@ -697,3 +871,5 @@ def instance_seg_process_video(
     cap.release()
 
     return None
+
+

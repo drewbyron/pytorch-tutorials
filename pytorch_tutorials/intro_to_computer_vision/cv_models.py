@@ -173,38 +173,49 @@ class UNET(nn.Module):
             shape of the model will be (batch_size, num_classes, img_size,
             img_size). For example output[0][i] is a binary segmentation
             mask for class i. Note that class 0 is reserved for background.
-        features (List[int]): A list specifying the number of features to
-            be used in each DoubleConv layer. Note that for the model to
-            work the image_size must be divisable by {(2** len(features))}.
+        first_feature_num (int): An int specifying the number of features to
+            be used in the first DoubleConv layer.
+        num_layers (int): Number of layers to use in the UNET architecture.
+            The ith layer contains first_feature_num * 2**i features. Note 
+            that if img_size // 2**num_layers < 1 then the model will break.
         kernel_size (int): A kernel of shape (kernel_size, kernel_size)
             will be applied to the imgs during both Conv2d layers of
             DoubleConv.
         bias (bool): whether or not to add a bias to the DoubleConv Conv2d
             layers.
+        track_x_shape (bool): whether or not to track the shape of x.
     """
 
     def __init__(
         self,
         in_channels=3,
         num_classes=4,
-        features=[64, 128, 256, 512],
+        first_feature_num=8,
+        num_layers=3,
+        skip_connect=True,
         kernel_size=3,
         bias=True,
+        track_x_shape=False,
     ):
         super().__init__()
 
         self.in_channels = in_channels
         self.num_classes = num_classes
-        self.features = features
+        self.features = [first_feature_num * 2**i for i in range(num_layers)]
+        self.skip_connect = skip_connect
         self.kernel_size = kernel_size
         self.bias = bias
+        self.track_x_shape = track_x_shape
 
         self.ups = nn.ModuleList()
         self.downs = nn.ModuleList()
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
 
-        self.bottleneck = DoubleConv(features[-1], features[-1] * 2)
-        self.final_conv = nn.Conv2d(features[0], self.num_classes, kernel_size=1)
+        self.bottleneck = DoubleConv(self.features[-1], self.features[-1] * 2)
+        self.final_conv = nn.Conv2d(self.features[0], self.num_classes, kernel_size=1)
+
+        if self.track_x_shape:
+            self.x_shape_tracker = []
 
         # Down part of UNET.
         for feature in self.features:
@@ -225,34 +236,71 @@ class UNET(nn.Module):
                     stride=2,
                 )
             )
-            self.ups.append(
-                DoubleConv(
-                    feature * 2, feature, kernel_size=self.kernel_size, bias=self.bias
+            if self.skip_connect:
+                self.ups.append(
+                    DoubleConv(
+                        feature * 2,
+                        feature,
+                        kernel_size=self.kernel_size,
+                        bias=self.bias,
+                    )
                 )
-            )
+            else:
+                self.ups.append(
+                    DoubleConv(
+                        feature, feature, kernel_size=self.kernel_size, bias=self.bias
+                    )
+                )
+
+    def track_shape(self, x, description):
+        if self.track_x_shape:
+            self.x_shape_tracker.append((f"{description}:\n\t {x.shape}"))
+
+        return None
 
     def forward(self, x):
         skip_connections = []
 
-        for down in self.downs:
+        self.track_shape(x, "input shape")
+
+        for idx, down in enumerate(self.downs):
             x = down(x)
+
+            self.track_shape(x, f"double_conv (down) {idx}")
+
             skip_connections.append(x)
             x = self.pool(x)
 
+            self.track_shape(x, f"max_pool {idx}")
+
         x = self.bottleneck(x)
+        self.track_shape(x, "bottleneck")
+
+        # Reverse the list of skip connections.
         skip_connections = skip_connections[::-1]
 
         for idx in range(0, len(self.ups), 2):
+
             x = self.ups[idx](x)
+
+            self.track_shape(x, f"conv_trans {idx//2}")
+
             skip_connection = skip_connections[idx // 2]
 
             if x.shape != skip_connection.shape:
                 x = TF.resize(x, size=skip_connection.shape[2:])
 
-            concat_skip = torch.cat((skip_connection, x), dim=1)
-            x = self.ups[idx + 1](concat_skip)
+            if self.skip_connect:
+                x = torch.cat((skip_connection, x), dim=1)
+                self.track_shape(x, f"skip connection {idx//2}")
+
+            x = self.ups[idx + 1](x)
+
+            self.track_shape(x, f"double_conv (up) {idx//2}")
 
         x = self.final_conv(x)
+
+        self.track_shape(x, "output shape")
 
         return x
 
@@ -296,8 +344,8 @@ def get_maskrcnn(num_classes=4, pretrained=True):
     else:
         model = torchvision.models.detection.maskrcnn_resnet50_fpn(weights=None)
 
-    if num_classes != -1: 
-        
+    if num_classes != -1:
+
         # Get number of input features for the classifier.
         in_features = model.roi_heads.box_predictor.cls_score.in_features
 

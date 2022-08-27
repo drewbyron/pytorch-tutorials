@@ -32,7 +32,7 @@ from skimage.draw import line_aa
 import pytorch_lightning as pl
 
 # Local imports
-from intro_to_cv_with_pytorch.cv_datasets import (
+from .cv_datasets import (
     ObjectCounting_DS,
     ImageSegmentation_DS,
     ObjectDetection_DS,
