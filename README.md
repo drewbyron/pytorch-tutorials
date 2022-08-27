@@ -5,12 +5,15 @@
 <p align="center"><img width="50%" src="/images/logos/pytorch_tutorials_logo.png" /></p>
 
 --------------------------------------------------------------------------------
+<p align="center">
+
 [![](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)](https://docs.python.org/3.9/)
 [![](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white)](https://pytorch.org/docs/stable/index.html)
 [![](https://img.shields.io/badge/PyTorchLightning-792EE5?style=for-the-badge&logo=PyTorchLightning&logoColor=white)](https://pytorch-lightning.readthedocs.io/en/stable/)
 [![Open In Youtube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg) 
 [![](https://img.shields.io/badge/pypi-3775A9?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/pytorch-tutorials/)
 
+</p>
 --------------------------------------------------------------------------------
 
 [youtube_logo]: /images/logos/youtube_logo.png
