@@ -18,9 +18,10 @@
 ##### Table of Contents  
 [Summary](#summary)  
 [Intro to Computer Vision](#cv)  
-
+[How to Reach Me](#me) 
 
 <a name="summary"/>
+
 ## Summary 
 
 In this repository you will find tutorials aimed at helping people get up to speed with pytorch and pytorch lightning. Links to the relavent docs and associated youtube channel and pypi project can be found above. For each video in the youtube series there is an associated colab notebook (links below). I highly encourage people to make a copy of the nb you can edit and follow along with it while watching the video. My idea with this project was to make small configurable datasets that would enable people (and myself) to get started gaining intuition for how to train bigger models (FasterRCNN, MaskRCNN,...) without needing to run on a cluster or train for a week to see how things work. The idea is that the colab notebooks walk through everything and then the classes and utility functions we make in the colab notebooks are all found in the [pypi](https://pypi.org/project/pytorch-tutorials/) package so that people can easily make their own sandbox to play around in. 
@@ -30,6 +31,7 @@ My ultimate intent is to have a little series for all of the pytorch libraries (
 I hope this is useful to you! Please comment on youtube if you have corrections/comments or suggestions for how to make this project and associated package more useful. Thanks!
 
 <a name="cv"/>
+
 ## Intro to Computer Vision
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
@@ -37,22 +39,11 @@ I hope this is useful to you! Please comment on youtube if you have corrections/
 Associated Documentation: [Series Documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
 
 Summary: 
-
-
-## Intro to Computer Vision: 
-
+ 
 [documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
 
-## Machine Learning
-* [![Youtube Link][logo]](https://youtu.be/pCCUnoes1Po) &nbsp; [Linear Regression](https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/algorithms/linearregression/linear_regression_gradient_descent.py) **- With Gradient Descent** :white_check_mark: 
-* [![Youtube Link][logo]](https://youtu.be/DQ6xfe75CDk) &nbsp; [Linear Regression](https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/algorithms/linearregression/linear_regression_normal_equation.py) **- With Normal Equation** :white_check_mark:
-* [![Youtube Link][logo]](https://youtu.be/x1ez9vi611I) &nbsp; [Logistic Regression](https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/algorithms/logisticregression/logistic_regression.py)
-* [![Youtube Link][logo]](https://youtu.be/3trW5Lig7BU) &nbsp; [Naive Bayes](https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/algorithms/naivebayes/naivebayes.py) **- Gaussian Naive Bayes**
-* [![Youtube Link][logo]](https://youtu.be/QzAaRuDskyc) &nbsp; [K-nearest neighbors](https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/algorithms/knn/knn.py)
-* [![Youtube Link][logo]](https://youtu.be/W4fSRHeafMo) &nbsp; [K-means clustering](https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/algorithms/kmeans/kmeansclustering.py) 
-* [![Youtube Link][logo]](https://youtu.be/gBTtR0bs-1k) &nbsp; [Support Vector Machine](https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/algorithms/svm/svm.py) **- Using CVXOPT**
-* [![Youtube Link][logo]](https://youtu.be/NJvojeoTnNM) &nbsp; [Neural Network](https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/algorithms/neuralnetwork/NN.py)
-* [Decision Tree](https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/algorithms/decisiontree/decision_tree.py)
+
+<a name="me"/>
 
 ## How to Reach Me
 
