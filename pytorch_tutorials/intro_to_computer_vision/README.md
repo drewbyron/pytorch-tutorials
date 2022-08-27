@@ -21,8 +21,8 @@
 
 ## Table of Contents  
 - [cv_datasets](#datasets)  
-	- [Draw](#draw)
-	- [CV_DS_Base](#base)
+	- [Draw](#class-Draw)
+	- [CV_DS_Base](#class-CV_DS_Base(torch.utils.data.Dataset))
 - [cv_pl_data_modules](#pl_data_modules)  
 - [cv_models](#models)  
 - [cv_utility](#utility)  
@@ -34,7 +34,7 @@
 
 <!-- <a name="draw"/> -->
 
-### class Draw:
+### class Draw
 
 Class used to draw shapes onto images. Methods return coordinates of
 corresponding shape on a 2d np array of shape (img_size, img_size).
