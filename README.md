@@ -1,17 +1,15 @@
-<p align="center"><img width="100%" src="ML/others/logo/torch_and_tf.svg" /></p>
+<p align="center"><img width="100%" src="/figures/logos/pytorch_logo.png" /></p>
 
 --------------------------------------------------------------------------------
 
 
-[![Build Status](https://travis-ci.com/aladdinpersson/Machine-Learning-Collection.svg?branch=master)](https://travis-ci.com/aladdinpersson/Machine-Learning-Collection) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-[logo]: https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/others/logo/youtube_logo.png
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Machine Learning Collection
 In this repository you will find tutorials and projects related to Machine Learning. I try to make the code as clear as possible, and the goal is be to used as a learning resource and a way to lookup problems to solve specific problems. For most I have also done video explanations on YouTube if you want a walkthrough for the code. If you got any questions or suggestions for future videos I prefer if you ask it on [YouTube](https://www.youtube.com/c/AladdinPersson). This repository is contribution friendly, so if you feel you want to add something then I'd happily merge a PR :smiley:
 
 ## Table Of Contents
-- [Machine Learning Algorithms](#machine-learning)
+- [Intro to Computer Vision](#machine-learning)
 - [PyTorch Tutorials](#pytorch-tutorials)
 	- [Basics](#basics)
 	- [More Advanced](#more-advanced)
@@ -26,9 +24,11 @@ In this repository you will find tutorials and projects related to Machine Learn
 ## Intro to Computer Vision with Pytorch
 
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
+* [![Open In Youtube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+* [Series Documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
 
 
-## Intro to CV docs: 
+## Intro to Computer Vision: 
 
 [documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
 
