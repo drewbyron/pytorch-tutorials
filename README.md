@@ -15,7 +15,7 @@
 --------------------------------------------------------------------------------
 
 [youtube_logo]: /images/logos/youtube_logo.png
-<!--  https://github.com/AladdinPerzon/Machine-Learning-<!-- Collection -->/blob/master/ML/others/logo/youtube_logo.png -->
+
 
 
 # pytorch-tutorials
@@ -25,8 +25,12 @@
 ### Table of Contents  
 - [Summary](#Summary)  
 - [Intro to Computer Vision](#Intro-to-Computer-Vision)  
-	- [Summary and Introduction](#Part-0:-Summary-and-Introduction)
-	- [Part 1: Object Counting](#Part-1:-Object-Counting)
+	- [Part 0:Summary and Introduction](#Summary-and-Introduction)
+	- [Part 1: Object Counting](#Object-Counting)
+	- [Part 2:Image Segmentation with UNET](#Image-Segmentation-with-UNET)
+	- [Part 3:Image Segmentation with UNET](#Image-Segmentation-with-UNET)
+	- [Part 4:Image Segmentation with UNET](#Image-Segmentation-with-UNET)
+	- [Part 5:Applying Mask RCNN in the Wild](Applying-Mask-RCNN-in-the-Wild)
 - [How to Reach Me](#How-to-Reach-Me) 
 
 
@@ -38,20 +42,39 @@ My ultimate intent is to have a little series for all of the pytorch libraries (
 
 I hope this is useful to you! Please comment on youtube if you have corrections/comments or suggestions for how to make this project and associated package more useful. Thanks!
 
-<a name="cv"/>
 
 ## Intro to Computer Vision
 
-### Part 0: Summary and Introduction
+### Summary and Introduction
 
-* [![][youtube_logo](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg) FIX THIS
+* Estimated time commitment: 
+* [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
 * [Intro to Computer Vision Documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
 
-### Part 1: Object Counting
+### Object Counting with CNNs
 
-* [![][youtube_logo](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+* [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
-* [![](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+
+### Image Segmentation with UNET
+
+* [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
+
+### Object Detection with Faster RCNN
+
+* [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
+
+### Object Detection with Mask RCNN
+
+* [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
+
+### Applying Mask RCNN in the Wild
+
+* [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
 
 
 ## How to Reach Me
