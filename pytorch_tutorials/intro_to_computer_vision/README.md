@@ -27,9 +27,9 @@
 	- [ImageSegmentation_DS](#class-ImageSegmentation_DS)
 	- [ObjectDetection_DS](#class-ObjectDetection_DS)
 - [cv_pl_data_modules](#cv_pl_data_modules)  
-	- [ObjectCounting_DM](#ObjectCounting_DM)
-	- [ImageSegmentation_DM](#ImageSegmentation_DM)
-	- [ObjectDetection_DM](#ObjectDetection_DM)
+	- [ObjectCounting_DM](#class-ObjectCounting_DM)
+	- [ImageSegmentation_DM](#class-ImageSegmentation_DM)
+	- [ObjectDetection_DM](#class-ObjectDetection_DM)
 - [cv_models](#cv_models)  
 - [cv_utility](#cv_utility)  
 
@@ -236,6 +236,126 @@ target_masks (bool): whether or not the target dictionaries should
 
 
 ## [cv_pl_data_modules](https://github.com/drewbyron/pytorch-tutorials/blob/main/pytorch_tutorials/intro_to_computer_vision/cv_pl_data_modules.py)
+
+
+
+### class ObjectCounting_DM
+
+Self contained PyTorch Lightning DataModule for testing object
+counting models with PyTorch Lightning.Uses the torch dataset
+ObjectCounting_DS.
+
+*Args:* 
+
+train_val_size (int): total size of the training and validation
+    sets combined.
+
+train_val_split (Tuple[float, float]): should sum to 1.0. For example
+    if train_val_size = 100 and train_val_split = (0.80, 0.20)
+    then the training set will contain 80 imgs and the validation
+    set will contain 20 imgs.
+
+test_size (int): the size of the test data set.
+
+batch_size (int): batch size to be input to dataloaders. Applies
+    for training, val, and test datasets.
+
+dataloader_shuffle (Dict): whether or not to shuffle for each of
+    the three dataloaders. Dict must contain the keys: "train",
+    "val", "test".
+
+img_size (int): will build images of shape (3, img_size, img_size).
+
+shapes_per_image (Tuple[int, int]): will produce images containing
+    minimum number of shapes Tuple[0] and maximum number of shapes
+    Tuple[1]. For example shapes_per_image = (2,2) would create a
+    dataset where each image contains exactly two shapes.
+
+class_probs (Tuple[float, float, float]): relative probability of
+    each shape occuring in an image. Need not sum to 1. For example
+    class_probs = (1,1,0) will create a dataset with 50% class 1
+    shapes, 50% class 2 shapes, 0% class 3 shapes.
+
+rand_seed (int): used to instantiate a numpy rng.
+
+class_map (Dict[Dict]): the class map must contain keys (0,1,2,3)
+    and contain names "background", "rectangle", "line", and "donut".
+    "gs_range" specifies the upper and lower bound of the
+    grayscale values (0, 255) used to color the shapes.
+    "target_color" can be used by visualization tools to assign
+    a color to masks and boxes. Note that class 0 is reserved for
+    background in most instance seg models, so one can rearrange
+    the class assignments of different shapes but 0 must correspond
+    to "background". The utility of this Dict is to enable the user
+    to change target colors, class assignments, and shape
+    intensities. A valid example:
+    class_map={
+    0: {"name": "background","gs_range": (200, 255),"target_color": (255, 255, 255),},
+    1: {"name": "rectangle", "gs_range": (0, 100), "target_color": (255, 0, 0)},
+    2: {"name": "line", "gs_range": (0, 100), "target_color": (0, 255, 0)},
+    3: {"name": "donut", "gs_range": (0, 100), "target_color": (0, 0, 255)}}.
+    
+object_count (bool): whether or not the targets contain the
+    object instance counts or not. Example below under the
+    build_imgs_and_targets() method of the ImageClassification_DS .
+
+
+
+### class ImageSegmentation_DM
+
+Self contained PyTorch Lightning DataModule for testing image
+segmentation models with PyTorch Lightning. Uses the torch dataset
+ImageSegmentation_DS.
+
+*Args:*
+
+train_val_size (int): total size of the training and validation
+    sets combined.
+
+train_val_split (Tuple[float, float]): should sum to 1.0. For example
+    if train_val_size = 100 and train_val_split = (0.80, 0.20)
+    then the training set will contain 80 imgs and the validation
+    set will contain 20 imgs.
+
+test_size (int): the size of the test data set.
+
+batch_size (int): batch size to be input to dataloaders. Applies
+    for training, val, and test datasets.
+
+dataloader_shuffle (Dict): whether or not to shuffle for each of
+    the three dataloaders. Dict must contain the keys: "train",
+    "val", "test".
+
+img_size (int): will build images of shape (3, img_size, img_size).
+
+shapes_per_image (Tuple[int, int]): will produce images containing
+    minimum number of shapes Tuple[0] and maximum number of shapes
+    Tuple[1]. For example shapes_per_image = (2,2) would create a
+    dataset where each image contains exactly two shapes.
+
+class_probs (Tuple[float, float, float]): relative probability of
+    each shape occuring in an image. Need not sum to 1. For example
+    class_probs = (1,1,0) will create a dataset with 50% class 1
+    shapes, 50% class 2 shapes, 0% class 3 shapes.
+
+rand_seed (int): used to instantiate a numpy rng.
+
+class_map (Dict[Dict]): the class map must contain keys (0,1,2,3)
+    and contain names "background", "rectangle", "line", and "donut".
+    "gs_range" specifies the upper and lower bound of the
+    grayscale values (0, 255) used to color the shapes.
+    "target_color" can be used by visualization tools to assign
+    a color to masks and boxes. Note that class 0 is reserved for
+    background in most instance seg models, so one can rearrange
+    the class assignments of different shapes but 0 must correspond
+    to "background". The utility of this Dict is to enable the user
+    to change target colors, class assignments, and shape
+    intensities. A valid example:
+    class_map={
+    0: {"name": "background","gs_range": (200, 255),"target_color": (255, 255, 255),},
+    1: {"name": "rectangle", "gs_range": (0, 100), "target_color": (255, 0, 0)},
+    2: {"name": "line", "gs_range": (0, 100), "target_color": (0, 255, 0)},
+    3: {"name": "donut", "gs_range": (0, 100), "target_color": (0, 0, 255)}}.
 
 
 ### class ObjectDetection_DM
