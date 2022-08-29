@@ -25,7 +25,7 @@
 	- [Part 1: Object Counting with CNNs](#Object-Counting-with-CNNs)
 	- [Part 2: Image Segmentation with UNET](#Image-Segmentation-with-UNET)
 	- [Part 3: Object Detection with Faster RCNN](#Object-Detection-with-Faster-RCNN)
-	- [Part 4: Object Detection with Mask RCNN](#Object-Detection-with-Mask-RCNN)
+	- [Part 4: Instance Segmentation with Mask RCNN](#Instance-Segmentation-with-Mask-RCNN)
 	- [Part 5: Applying Mask RCNN in the Wild](#Applying-Mask-RCNN-in-the-Wild)
 - [How to Reach Me](#How-to-Reach-Me) 
 
@@ -65,7 +65,7 @@ In my experience it is very difficult to build intuition for how deep learning w
 * [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1IGhNjysjbbchjQO19ta-frpNG3DDS_uV?usp=sharing)
 
-### Object Detection with Mask RCNN
+### Instance Segmentation with Mask RCNN
 
 * [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1bIU6kMxGtzcr5vnBxkM3bWyEaHZJzepD?usp=sharing)
