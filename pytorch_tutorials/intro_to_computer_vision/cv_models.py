@@ -1,6 +1,7 @@
 # Author: Drew Byron.
-# Date: 7/23/22.
-# Description of Module:
+# Date: 8/29/22.
+# Description of Module: A set of pytorch computer vision models or functions
+# to get a pretrained model with a custom number of output classes. 
 
 # Deep learning imports.
 import torch
@@ -176,7 +177,7 @@ class UNET(nn.Module):
         first_feature_num (int): An int specifying the number of features to
             be used in the first DoubleConv layer.
         num_layers (int): Number of layers to use in the UNET architecture.
-            The ith layer contains first_feature_num * 2**i features. Note 
+            The ith layer contains first_feature_num * 2**i features. Note
             that if img_size // 2**num_layers < 1 then the model will break.
         kernel_size (int): A kernel of shape (kernel_size, kernel_size)
             will be applied to the imgs during both Conv2d layers of
@@ -314,7 +315,12 @@ def get_fasterrcnn(num_classes=4, pretrained=True):
 
     Args:
         num_classes (int): number of output classes desired.
-        pretrained (bool): whether or not to load a model pretrained on the COCO dataset. 
+        pretrained (bool): whether or not to load a model pretrained on the COCO dataset.
+
+    Returns:
+        model (nn.Module): torchvision faster rcnn implimentation with custom
+            number of outputs/classes.
+
     """
 
     # load Faster RCNN pre-trained model
@@ -340,7 +346,11 @@ def get_maskrcnn(num_classes=4, pretrained=True):
 
     Args:
         num_classes (int): number of output classes desired.
-        pretrained (bool): whether or not to load a model pretrained on the COCO dataset. 
+        pretrained (bool): whether or not to load a model pretrained on the COCO dataset.
+
+    Returns:
+        model (nn.Module): torchvision mask rcnn implimentation with custom
+            number of outputs/classes.
     """
 
     if pretrained:

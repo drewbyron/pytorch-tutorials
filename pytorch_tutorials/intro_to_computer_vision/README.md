@@ -31,10 +31,33 @@
 	- [ImageSegmentation_DM](#class-ImageSegmentation_DM)
 	- [ObjectDetection_DM](#class-ObjectDetection_DM)
 - [cv_models](#cv_models)  
+	- [DoubleConv](#class-DoubleConv)
+	- [ObjectCounter](#class-ObjectCounter)
+	- [UNET](#class-UNET)
+	- [get_fasterrcnn](#def-get_fasterrcnn)
+	- [get_maskrcnn](#def-get_maskrcnn)
 - [cv_utility](#cv_utility)  
+	- [show](#def-show)
+	- [add_labels](#def-add_labels)
+	- [labels_to_masks](#def-labels_to_masks)
+	- [display_masks_unet](#def-display_masks_unet)
+	- [display_boxes](#def-display_boxes)
+	- [display_masks_rcnn](#def-display_masks_rcnn)
+	- [display_labels](#def-display_labels)
+	- [threshold_pred_masks](#def-threshold_pred_masks)
+	- [build_coco_class_map](#def-build_coco_class_map)
+	- [apply_score_cut](#def-apply_score_cut)
+	- [load_img_dir](#def-load_img_dir)
+	- [get_preds](#def-get_preds)
+	- [save_imgs](#def-save_imgs)
+	- [maskrcnn_process_images](#def-maskrcnn_process_images)
+	- [maskrcnn_process_video](#def-maskrcnn_process_video)
+
 
 
 ## [cv_datasets](https://github.com/drewbyron/pytorch-tutorials/blob/main/pytorch_tutorials/intro_to_computer_vision/cv_datasets.py)
+
+A set of pytorch datasets for building simple computer vision projects.
 
 ### class Draw
 
@@ -237,7 +260,7 @@ target_masks (bool): whether or not the target dictionaries should
 
 ## [cv_pl_data_modules](https://github.com/drewbyron/pytorch-tutorials/blob/main/pytorch_tutorials/intro_to_computer_vision/cv_pl_data_modules.py)
 
-
+A set of pytorch lightning data modules for building simple computer vision projects.
 
 ### class ObjectCounting_DM
 
@@ -294,7 +317,7 @@ class_map (Dict[Dict]): the class map must contain keys (0,1,2,3)
     1: {"name": "rectangle", "gs_range": (0, 100), "target_color": (255, 0, 0)},
     2: {"name": "line", "gs_range": (0, 100), "target_color": (0, 255, 0)},
     3: {"name": "donut", "gs_range": (0, 100), "target_color": (0, 0, 255)}}.
-    
+
 object_count (bool): whether or not the targets contain the
     object instance counts or not. Example below under the
     build_imgs_and_targets() method of the ImageClassification_DS .
@@ -422,6 +445,581 @@ target_masks (bool): whether or not the target dictionaries should
 
 ## [cv_models](https://github.com/drewbyron/pytorch-tutorials/blob/main/pytorch_tutorials/intro_to_computer_vision/cv_models.py)
 
+A set of pytorch computer vision models or functions to get a pretrained model with a custom number of output classes. 
+
+### class DoubleConv
+
+A double convolution module used to extract features.
+
+*Args:*
+
+in_channels (int): number of input channels. For example for an
+    input of shape (batch_size, 3, img_size, img_size) in_channels
+    is 3.
+
+out_channels (int): number of output_channels desired. For example
+    if the desired output shape is (batch_size, 3, img_size, img_size)
+    in_channels is 3.
+
+kernel_size (int): A kernel of shape (kernel_size, kernel_size)
+    will be applied to the imgs during both Conv2d layers.
+
+bias (bool): whether or not to add a bias to the Conv2d layers.
+
+
+### class ObjectCounter
+
+An object counting model that uses multiple conv layers and then
+two fully connected layers to determine how many instances of different
+classes of objects are in an image.
+
+*Args:*
+
+img_size (int): model will take images of shape
+    (3, img_size, img_size).
+
+in_channels (int): number of input channels. For example for an
+    put of shape (batch_size, 3, img_size, img_size) in_channels
+    is 3.
+
+num_classes (int): number of output classes desired. The output
+    shape of the model will be (batch_size, num_classes).
+
+features (List[int]): A list specifying the number of features to
+    be used in each DoubleConv layer. Note that for the model to
+    work the image_size must be divisable by {(2** len(features))}.
+
+fc_intermediate_size (int): Size of the output of the first
+    fully connected layer (fc1) and size of the input of the second
+    fully connected layer (fc2).
+
+kernel_size (int): A kernel of shape (kernel_size, kernel_size)
+    will be applied to the imgs during both Conv2d layers.
+
+bias (bool): whether or not to add a bias to the Conv2d layers.
+
+
+### class UNET
+A PyTorch implimentation of a UNET image segmentation model based
+on this work: https://arxiv.org/abs/1505.04597. Specifics based on
+Aladdin Persson's implimentation:
+https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/image_segmentation/semantic_segmentation_unet/model.py
+
+*Args:*
+
+in_channels (int): number of input channels. For example for an
+	put of shape (batch_size, 3, img_size, img_size) in_channels
+	is 3.
+
+num_classes (int): number of output classes desired. The output
+    shape of the model will be (batch_size, num_classes, img_size,
+    img_size). For example output[0][i] is a binary segmentation
+    mask for class i. Note that class 0 is reserved for background.
+
+first_feature_num (int): An int specifying the number of features to
+    be used in the first DoubleConv layer.
+
+num_layers (int): Number of layers to use in the UNET architecture.
+    The ith layer contains first_feature_num * 2**i features. Note 
+    that if img_size // 2**num_layers < 1 then the model will break.
+
+kernel_size (int): A kernel of shape (kernel_size, kernel_size)
+    will be applied to the imgs during both Conv2d layers of
+    DoubleConv.
+
+bias (bool): whether or not to add a bias to the DoubleConv Conv2d
+    layers.
+
+### def get_fasterrcnn
+
+A function for loading the PyTorch implimentation of FasterRCNN.
+To not have predictor changed at all set num_classes = -1.
+See here for documentation on the input and output specifics:
+https://pytorch.org/vision/stable/models/faster_rcnn.html
+
+*Args:* 
+
+num_classes (int): number of output classes desired.
+
+pretrained (bool): whether or not to load a model pretrained on the COCO dataset. 
+
+*Returns:*
+
+model (nn.Module): torchvision faster rcnn implimentation with custom 
+	number of outputs/classes.
+
+
+### def get_maskrcnn
+
+A function for loading the PyTorch implimentation of MaskRCNN.
+To not have predictor changed at all set num_classes = -1.
+See here for documentation on the input and output specifics:
+https://pytorch.org/vision/0.12/generated/torchvision.models.detection.maskrcnn_resnet50_fpn.html
+
+*Args:*
+
+num_classes (int): number of output classes desired.
+
+pretrained (bool): whether or not to load a model pretrained on the COCO dataset. 
+
+*Returns:*
+
+model (nn.Module): torchvision mask rcnn implimentation with custom
+    number of outputs/classes.
+
 
 ## [cv_utility](https://github.com/drewbyron/pytorch-tutorials/blob/main/pytorch_tutorials/intro_to_computer_vision/cv_utility.py)
 
+Utility functions for pytorch computer vision tasks.
+
+### def show
+
+Displays a single image or list of images. Taken more or less from
+the pytorch docs:
+https://pytorch.org/vision/main/auto_examples/plot_visualization_utils.html#visualizing-a-grid-of-images
+
+*Args:*
+
+imgs (Union[List[torch.Tensor], torch.Tensor]): A list of images
+    of shape (3, H, W) or a single image of shape (3, H, W).
+
+figsize (Tuple[float, float]): size of figure to display.
+
+*Returns:*
+
+None
+
+
+### def add_labels
+
+Takes a single image of shape (3, H, W) and adds labels directly
+onto the image using cv2. Used with ImageSegmentation_DS/DM but can
+be used in other applicable computer vision tasks.
+
+*Args:*
+   
+img (torch.UInt8Tensor[3, H, W]): a pytorch image.
+
+label (torch.int64[ds_size, num_classes]): label contians
+    either the number of instances of each class (if object_count
+    = True) or a binary value representing if
+    any of the class are present in the image. For example
+    if the image contains 3 instances of class 2 then
+    label[1] = 3 if object_count = True and
+    label[1] = 1 if object_count = False. Note that here 0 is
+    not a valid class so if your class_map contains keys
+    0,1,2,3,4 then num_classes = 4.
+
+class_map (Dict[Dict]): the class map must contain keys that
+    correspond to the labels provided. Inner Dict must contain
+    "name" and "target_color". class 0 is reserved for the case
+    where the image contains no objects (label.sum() == 0).
+    A valid example:
+    class_map={
+    0: {"name": "background","target_color": (255, 255, 255),},
+    1: {"name": "rectangle", "target_color": (255, 0, 0)},
+    2: {"name": "line", "target_color": (0, 255, 0)},
+    3: {"name": "donut", "target_color": (0, 0, 255)}}.
+
+pred (bool): whether or not the label provided is a prediction.
+    Predictions are printed in the bottom right of the image
+    whereas targets are printed in the top left.
+
+object_count (bool): whether or not the label contains the
+    object instance counts or not. See above under label for an
+    example.
+
+
+*Returns:*
+
+img (torch.UInt8Tensor[3, H, W]): a pytorch image with the names
+    and (optionally) counts corresponding to the provided label
+    drawn over the image.
+
+
+### def labels_to_masks
+
+Converts  a batch of segmentation labels into binary masks. Used
+with UNET or in other image segmentation tasks. This function works
+for both batches of labels or single (2d) image labels. The Args and
+return descriptions assume a full batch is input.
+
+*Args:*
+
+labels (torch.int64[batch_size, H, W]): a batch of segmentation
+    labels. Each pixel is assigned a class (an integer value).
+
+*Returns:*
+
+binary_masks (torch.bool[batch_size, num_obj_ids, H, W]): a batch of
+    corresponding binary masks. Layer i (of dim = 1) corresponds to
+    a binary mask for class i. The total number of binary masks will
+    be the number of unique object ids (num_obj_ids).
+
+
+
+### def display_masks_unet
+
+Takes a batch of images and a batch of masks of the same length and
+overlays the images with the masks using the "target_color" specified
+in the class_map.
+
+*Args:* 
+
+imgs (List[torh.ByteTensor[batch_size, 3, H, W]]): a batch of
+    images of shape (batch_size, 3, H, W).
+
+masks (torch.bool[batch_size, num_masks, H, W]]): a batch of
+    corresponding boolean masks.
+
+class_map (Dict[Dict]): the class map must contain keys that
+    correspond to the labels provided. Inner Dict must contain
+    key "target_color". class 0 is reserved for background.
+    A valid example ("name" not necessary):
+    class_map={
+    0: {"name": "background","target_color": (255, 255, 255),},
+    1: {"name": "rectangle", "target_color": (255, 0, 0)},
+    2: {"name": "line", "target_color": (0, 255, 0)},
+    3: {"name": "donut", "target_color": (0, 0, 255)}}.
+
+alpha (float): transparnecy of masks. In range (0-1).
+
+*Returns:*
+
+result_imgs (List[torch.ByteTensor[3, H, W]]]): list of images
+    with overlaid segmentation masks.
+
+
+### def display_boxes
+Takes a list of images and a list of target or prediction dictionaries
+of the same len and overlays bounding boxes onto the images.
+
+*Args:*
+
+imgs (List[torch.ByteTensor[3, H, W]]): list of images (each a
+    torch.ByteTensor of shape(3, H, W)).
+
+target_pred_dict (List[Dict[torch.Tensor]]): predictions or targets
+    formatted according to the torchvision implimentation of
+    FasterRCNN and MaskRCNN.
+    See link below for details on the target/prediction formatting.
+    https://pytorch.org/vision/0.12/_modules/torchvision/models/detection/mask_rcnn.html
+
+class_map (Dict[Dict]): the class map must contain keys that
+    correspond to the labels provided. Inner Dict must contain
+    key "target_color". class 0 is reserved for background.
+    A valid example ("name" not necessary):
+    class_map={
+    0: {"name": "background","target_color": (255, 255, 255),},
+    1: {"name": "rectangle", "target_color": (255, 0, 0)},
+    2: {"name": "line", "target_color": (0, 255, 0)},
+    3: {"name": "donut", "target_color": (0, 0, 255)}}.
+
+fill (bool): if True the inside of the bounding boxes will be
+    filled with color.
+
+*Returns:*
+
+result_imgs (List[torch.ByteTensor[3, H, W]]): list of images with
+    overlaid bounding boxes.
+
+
+### def display_masks_rcnn
+
+Takes a list of images and a list of target or prediction dictionaries
+of the same len and overlays segmentation masks onto the images.
+
+*Args:*
+
+imgs (List[torch.ByteTensor[3, H, W]]): list of images (each a
+    torch.ByteTensor of shape(3, H, W)).
+
+target_pred_dict (List[Dict[torch.Tensor]]): predictions or targets
+    formatted according to the torchvision implimentation of
+    FasterRCNN and MaskRCNN.
+    See link below for details on the target/prediction formatting.
+    https://pytorch.org/vision/0.12/_modules/torchvision/models/detection/mask_rcnn.html
+
+class_map (Dict[Dict]): the class map must contain keys that
+    correspond to the labels provided. Inner Dict must contain
+    key "target_color". class 0 is reserved for background.
+    A valid example ("name" not necessary):
+    class_map={
+    0: {"name": "background","target_color": (255, 255, 255),},
+    1: {"name": "rectangle", "target_color": (255, 0, 0)},
+    2: {"name": "line", "target_color": (0, 255, 0)},
+    3: {"name": "donut", "target_color": (0, 0, 255)}}.
+
+threshold (float): threshold applied to soft masks. In range (0-1).
+
+alpha (float): transparnecy of masks. In range (0-1).
+
+*Returns:*
+
+result_imgs (List[torch.ByteTensor[3, H, W]]): list of images with
+    overlaid segmentation masks.
+
+
+
+### def display_labels
+
+Takes a list of images and a list of target or prediction dictionaries
+of the same len and adds labels to the instances. Note that for very
+small images this will behave poorly.
+
+*Args:* 
+
+imgs (List[torch.ByteTensor[3, H, W]]): list of images (each a
+    torch.ByteTensor of shape(3, H, W)).
+
+target_pred_dict (List[Dict[torch.Tensor]]): predictions or targets
+    formatted according to the torchvision implimentation of
+    FasterRCNN and MaskRCNN.
+    See link below for details on the target/prediction formatting.
+    https://pytorch.org/vision/0.12/_modules/torchvision/models/detection/mask_rcnn.html
+
+class_map (Dict[Dict]): the class map must contain keys that
+    correspond to the labels provided. Inner Dict must contain
+    key "target_color". class 0 is reserved for background.
+    class_map={
+    0: {"name": "background","target_color": (255, 255, 255),},
+    1: {"name": "rectangle", "target_color": (255, 0, 0)},
+    2: {"name": "line", "target_color": (0, 255, 0)},
+    3: {"name": "donut", "target_color": (0, 0, 255)}}.
+
+text size (int): size of instance label text.
+
+text_width (int): width of instance label text.
+
+*Returns:*
+
+labeled_imgs (List[torch.ByteTensor[3, H, W]]): list of images with
+    overlaid instance labels.
+
+
+
+### def threshold_pred_masks
+
+Takes a list of prediction dictionaries (one for each image) and
+thresholds the soft masks, returning a list of prediction dictionaries
+with thresholded (boolean) masks.
+
+*Args:*
+
+preds (List[Dict[torch.Tensor]]): predictions as output by the
+    torchvision implimentation of MaskRCNN. The masks consist of
+    probabilities (torch.float32) in the range (0,1) for each pixel.
+    See link below for details on the target/prediction formatting.
+    https://pytorch.org/vision/0.12/_modules/torchvision/models/detection/mask_rcnn.html
+
+*Returns:*
+
+thresholded_preds (List[Dict[torch.Tensor]]): predictions with
+    boolean (torch.bool) masks.
+
+
+### def build_coco_class_map
+
+Returns a class_map for coco classes.
+
+*Args:*
+
+seed (int): seed to use to build np rng. Can change this to get
+    a new set of colors.
+
+drop_background (bool): If true the background class (assigned
+    class_id = 0 by default) will be dropped from the class map.
+    This is the default because in displaying the segmented images
+    often one doesn't care to display background.
+
+*Returns:*
+
+coco_class_map (Dict[Dict]): class_map to be used with other functions
+    in this module.
+
+
+
+### def apply_score_cut
+
+Takes a list of prediction dictionaries (one for each image) and cuts
+out all instances whose score is below the score threshold.
+
+*Args:*
+
+preds (List[Dict[torch.Tensor]]): predictions as output by the
+    torchvision implimentation of MaskRCNN or FasterRCNN. The 
+    scores are in the range (0,1) and signify the certainty of 
+    the model for that instance.
+    See link below for details on the target/prediction formatting.
+    https://pytorch.org/vision/0.12/_modules/torchvision/models/detection/mask_rcnn.html
+
+score_threshold (float): the threshold to apply to the identified
+    objects. If an instance is below the score_threshold it will
+    be removed from the score_thresholded_preds dictionary.
+
+*Returns:*
+
+score_thresholded_preds (List[Dict[torch.Tensor]]): predictions
+    that exceed score_threshold.
+
+
+### def load_img_dir
+
+Loads all of the images in a directory into torch images.
+
+*Args:*
+
+path (str): path should point to a directory that only contains
+    .JPG images. Or any image type compatible with cv2.imread().
+
+resize_factor (float): how to resize the image. Often one would
+    like to reduce the size of the images to be easier/faster to
+    use with our maskrcnn model.
+
+*Returns:*
+
+imgs (List[torch.ByteTensor[3, H, W]]): list of images (each a
+    torch.ByteTensor of shape(3, H, W)).
+
+
+### def get_preds
+
+Simple utility function for returning the predictions of maskrcnn model.
+This deals with putting the model and imgs on device and normalizing
+torch.ByteTensor.
+
+*Args:*
+
+maskrcnn (nn.Module): an instance of the torchvision Mask RCNN
+    model. One can build with following call: maskrcnn =
+    cv_models.get_maskrcnn(num_classes=-1, pretrained=True)
+
+device (str): what device to put model and imgs. Use following
+    call: device = "cuda" if torch.cuda.is_available() else "cpu"
+
+*Returns:*
+
+preds (List[Dict[torch.Tensor]]): predictions as output by the
+    torchvision implimentation of MaskRCNN.
+    See link below for details on the target/prediction formatting.
+    https://pytorch.org/vision/0.12/_modules/torchvision/models/detection/mask_rcnn.html
+
+
+### def save_imgs
+
+Saves torch images to JPG file format.
+
+*Args:*
+
+imgs (List[torch.ByteTensor[3, H, W]]): list of images (each a
+    torch.ByteTensor of shape(3, H, W)).
+
+base_path (str): path to directory where images should be written.
+
+base_name (str): base name to be used to build JPG file paths.
+
+*Returns:*
+
+None
+
+
+### def maskrcnn_process_images
+
+
+Processes a set of imgs and associated predictions.
+
+*Args:*
+
+imgs (List[torch.ByteTensor[3, H, W]]): list of images (each a
+    torch.ByteTensor of shape(3, H, W)).
+
+preds (List[Dict[torch.Tensor]]): predictions as output by the
+    torchvision implimentation of MaskRCNN.
+    See link below for details on the target/prediction formatting.
+    https://pytorch.org/vision/0.12/_modules/torchvision/models/detection/mask_rcnn.html
+
+class_map (Dict[Dict]): the class map must contain keys that
+    correspond to the labels provided. Inner Dict must contain
+    key "target_color". class 0 is reserved for background.
+    class_map={
+    0: {"name": "background","target_color": (255, 255, 255),},
+    1: {"name": "rectangle", "target_color": (255, 0, 0)},
+    2: {"name": "line", "target_color": (0, 255, 0)},
+    3: {"name": "donut", "target_color": (0, 0, 255)}}.
+
+config (Dict): a config dictionary that contains info on how to
+    process the imgs. Example below. Must contain all keys included
+    in the example:
+    config = {"boxes": True,
+              "masks": True,
+              "labels": True,
+              "score_cut": .5,
+              "box_width": 2,
+              "box_fill" : False,
+              "mask_threshold": .5,
+              "mask_alpha": .5,
+              "label_size": 1,
+              "label_width": 1}
+
+*Returns:*
+
+processed_imgs (List[torch.ByteTensor[3, H, W]]): list of processed
+    images (each a torch.ByteTensor of shape(3, H, W)).
+
+
+### def maskrcnn_process_video
+
+Processes a .MOV, adding segmentation, labels, and/or bboxes and
+writes out a processed version of the original .MOV
+
+*Args:*
+
+raw_video_path (str): path to raw .MOV file. Should work with any
+file type compatible with cv2.VideoCapture.
+
+processed_video_path (str): path where processed video will be
+written.
+
+device (str): what device to put model and imgs. Use following
+call: device = "cuda" if torch.cuda.is_available() else "cpu"
+
+maskrcnn (nn.Module): an instance of the torchvision Mask RCNN
+model. One can build with following call: maskrcnn =
+cv_models.get_maskrcnn(num_classes=-1, pretrained=True)
+
+class_map (Dict[Dict]): the class map must contain keys that
+correspond to the labels provided. Inner Dict must contain
+key "target_color". class 0 is reserved for background.
+class_map={
+0: {"name": "background","target_color": (255, 255, 255),},
+1: {"name": "rectangle", "target_color": (255, 0, 0)},
+2: {"name": "line", "target_color": (0, 255, 0)},
+3: {"name": "donut", "target_color": (0, 0, 255)}}.
+
+config (Dict): a config dictionary that contains info on how to
+process the imgs. Example below. Must contain all keys included
+in the example:
+config = {"boxes": True,
+          "masks": True,
+          "labels": True,
+          "score_cut": .5,
+          "box_width": 2,
+          "box_fill" : False,
+          "mask_threshold": .5,
+          "mask_alpha": .5,
+          "label_size": 1,
+          "label_width": 1}
+
+output_shape (tuple[int,int]): size of the ouput video.
+show_first_frame (bool): used to sanity check. Set to true to see the
+result of first frame.
+
+frame_max (int): number of frames to process. Used to limit the time this takes and to sanity check things. Set to 10 to be sure things are working.
+
+fps (int): frames per second of video. Default for google photos
+is 30.
+
+*Returns:*
+
+None
+"""

@@ -1,6 +1,6 @@
 # Author: Drew Byron.
-# Date: 7/23/22.
-# Description of Module:
+# Date: 8/29/22.
+# Description of Module: Utility functions for pytorch computer vision tasks.
 
 # Deep learning imports.
 import torch
@@ -801,8 +801,8 @@ def maskrcnn_process_video(
         output_shape (tuple[int,int]): size of the ouput video.
         show_first_frame (bool): used to sanity check. Set to true to see the
             result of first frame.
-        frame_max (int): used to limit the time this takes and to sanity
-            check things. Set to 10 to be sure things are working.
+        frame_max (int): number of frames to process. Used to limit the 
+            time this takes and to sanity check things. Set to 10 to be sure things are working.
         fps (int): frames per second of video. Default for google photos
             is 30.
 

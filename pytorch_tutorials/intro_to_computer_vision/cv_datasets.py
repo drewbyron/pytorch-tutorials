@@ -1,6 +1,8 @@
 # Author: Drew Byron.
-# Date: 7/23/22.
-# Description of Module:
+# Date: 8/29/22.
+# Description of Module: A set of pytorch datasets for
+# building simple computer vision projects.
+
 
 # Deep learning imports.
 import torch
