@@ -41,16 +41,16 @@ I hope this is useful to you! Please comment on youtube if you have corrections/
 
 ## Intro to Computer Vision
 
-This tutorial series consists of five youtube videos and four notebooks. We begin by building a model to count the number of shapes in an image, building incrimentally towards training Faster RCNN and Mask RCNN. We finish with some examples of how to apply this model to real images and videos. The series will be most useful to those who have some pytorch and machine learning experience and are intersted in deep learning for computer vision tasks. 
+This tutorial series consists of six youtube videos (one is just intro) and five public colab notebooks so you can follow along with the video. We begin by building a model to count objects in an image, then conduct image segmentation using UNET, and finally learn how to train Faster RCNN and Mask RCNN on a custom dataset. We work with the same simple and configurable dataset of images throughout the series. We finish with some examples of how to apply this model to real images and videos in Part 5. The series will be most useful to those who have some pytorch and machine learning experience and are intersted in deep learning for computer vision tasks. 
 
-In my experience it is very difficult to build intuition for how deep learning works in practice without actually trying to train models. So my hope is that this will be a good way for people to get their hands dirty without a large barrier to entry in set-up or prior experience. I highly encourage people to make a copy of the colab notebooks you can edit (open the notebook by clicking the badge, then click "save copy in drive") and follow along with it while watching the videos. My idea with this project was to make small configurable datasets that would enable people (and myself) to gain intuition for how to train bigger models (FasterRCNN, MaskRCNN,...) without needing to run on a cluster or train for a week to see how things work. The idea is that the youtube videos and associated colab notebooks walk through everything in detail (hopefully not excruciating detail) and then the classes and utility functions we make in the colab notebooks are all found in the [pytorch-tutorials pypi](https://pypi.org/project/pytorch-tutorials/) package so that people can easily make their own sandbox to play around in. 
+In my experience it is very difficult to build intuition for how deep learning works in practice without actually trying to train models. So my hope is that this will be a good way for people to get their hands dirty without a large barrier to entry in set-up or prior experience. I highly encourage people to make a copy of the colab notebooks you can edit (open the notebook by right clicking the badges below, then click "save copy in drive") and follow along with it while watching the videos. My idea with this project was to make small configurable datasets that would enable people (and myself) to gain intuition for how to train bigger models (FasterRCNN, MaskRCNN,...) without needing to run on a cluster or train for a week to see how things work. The idea is that the youtube videos and associated colab notebooks walk through everything in detail (hopefully not excruciating detail) and then the classes and utility functions we make in the colab notebooks are all found in the [pytorch-tutorials pypi](https://pypi.org/project/pytorch-tutorials/) package so that people can easily make their own sandbox to play around in. 
 
-### Summary and Introduction
+### Part 0: Summary and Introduction <a name="Summary-and-Introduction"></a>
 
 * START HERE -> [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
 * [Intro to Computer Vision Documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
 
-### Object Counting with CNNs
+### Part 1: Object Counting with CNNs <a name="Object-Counting-with-CNNs"></a>
 
 * [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
