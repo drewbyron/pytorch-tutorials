@@ -3,7 +3,6 @@
 # Description of Module: A set of pytorch lightning data modules for
 # building simple computer vision projects.
 
-
 # Deep learning imports.
 import torch
 from torch import nn

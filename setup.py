@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pytorch_tutorials',
-    version='0.2.14',    
+    version='0.2.15',    
     description='A resource for learning about PyTorch and deep learning.',
     url='https://github.com/drewbyron/pytorch-tutorials',
     author='William (Drew) Byron',
