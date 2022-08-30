@@ -76,6 +76,8 @@ In my experience, it is challenging to build intuition for how deep learning wor
 
 * [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1YaM6HN3IlLLy5tzWN7QCPi3ayKrIMJUp?usp=sharing)
+* [Images and Videos used in tutorial](https://drive.google.com/drive/folders/1-Hx9D18T2HAqmsuFrYzCEWWlpCrcXMEH?usp=sharing
+)
 
 
 ## How to Reach Me
