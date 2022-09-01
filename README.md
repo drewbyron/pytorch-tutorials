@@ -32,7 +32,7 @@
 
 ## Summary 
 
-In this repository, you will find tutorials aimed at helping people get up to speed with PyTorch and PyTorch lightning. Links to the relevant docs and associated youtube channel and PyPI project can be found in the badges above. My ultimate intent is to have a little series associated with all of the PyTorch libraries (vision, text, audio,..) but for now it's just vision. 
+In this repository, you will find tutorials aimed at helping people get up to speed with PyTorch and PyTorch Lightning. Links to the relevant docs and associated youtube channel and PyPI project can be found in the badges above. My ultimate intent is to have a little series associated with all of the PyTorch libraries (vision, text, audio,..) but for now it's just vision. 
 
 I hope this is useful to you! Please comment on youtube if you have corrections/comments or suggestions for how to make this project and associated package more useful. Thanks!
 
@@ -49,32 +49,32 @@ In my experience, it is challenging to build intuition for how deep learning wor
 ### Part 0: Summary and Introduction <a name="Summary-and-Introduction"></a>
 
 * **-> Start Here <-**
-* [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+* [![][youtube_logo]](https://youtu.be/dsSMv7YB5B0)
 * [Intro to Computer Vision Documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
 
 ### Part 1: Object Counting with CNNs <a name="Object-Counting-with-CNNs"></a>
 
-* [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+* [![][youtube_logo]](https://youtu.be/VLJ6RNlvS3Y)
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Cb9jxZ75Svivcxk2Qd_Y8o5PccCWLM-A?usp=sharing)
 
 ### Part 2: Image Segmentation with UNET <a name="Image-Segmentation-with-UNET"></a>
 
-* [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+* [![][youtube_logo]](https://youtu.be/-I3yThvtkHs)
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/136quz_ISw1b5sOj7wUC2WiVQca6iR-wR?usp=sharing)
 
 ### Part 3: Object Detection with Faster RCNN <a name="Object-Detection-with-Faster-RCNN"></a>
 
-* [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+* [![][youtube_logo]](https://youtu.be/X50peXk34fU)
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1IGhNjysjbbchjQO19ta-frpNG3DDS_uV?usp=sharing)
 
 ### Part 4: Instance Segmentation with Mask RCNN <a name="Instance-Segmentation-with-Mask-RCNN"></a>
 
-* [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+* [![][youtube_logo]](https://youtu.be/2w7Enf0Lo9A)
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1bIU6kMxGtzcr5vnBxkM3bWyEaHZJzepD?usp=sharing)
 
 ### Part 5: Applying Mask RCNN in the Wild <a name="Applying-Mask-RCNN-in-the-Wild"></a>
 
-* [![][youtube_logo]](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg)
+* [![][youtube_logo]](https://youtu.be/vG8s7BAjChc)
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1YaM6HN3IlLLy5tzWN7QCPi3ayKrIMJUp?usp=sharing)
 * [Images and Videos used in tutorial](https://drive.google.com/drive/folders/1-Hx9D18T2HAqmsuFrYzCEWWlpCrcXMEH?usp=sharing
 )
