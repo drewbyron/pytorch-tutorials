@@ -27,7 +27,7 @@
 **example of how to use the below classes and methods**: 
 
 *Note*: For more details on how to use the package, look at the end of the 
-videos/notebooks in the computer vision [tutorial series](https://github.com/drewbyron/pytorch-tutorials/blob/main/README.md).
+videos/notebooks in the computer vision [tutorial series](https://github.com/drewbyron/pytorch-tutorials/blob/main/README.md#intro-to-computer-vision).
 ```
 # import
 from pytorch_tutorials.intro_to_computer_vision import cv_utility
