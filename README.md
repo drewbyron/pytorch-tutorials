@@ -48,7 +48,7 @@ In my experience, it is challenging to build intuition for how deep learning wor
 
 ### Part 0: Summary and Introduction <a name="Summary-and-Introduction"></a>
 
-* **-> Start Here <-**
+* **-> [START COURSE HERE](https://www.youtube.com/playlist?list=PLS84ypkqWiQ8-TL0AmTRynkzK0v-d4C5m) <-**
 * [![][youtube_logo]](https://youtu.be/dsSMv7YB5B0)
 * [Intro to Computer Vision Documentation](/pytorch_tutorials/intro_to_computer_vision/README.md)
 
