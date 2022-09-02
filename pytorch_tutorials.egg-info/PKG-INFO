@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pytorch-tutorials
-Version: 0.2.15
+Version: 0.2.19
 Summary: A resource for learning about PyTorch and deep learning.
 Home-page: https://github.com/drewbyron/pytorch-tutorials
 Author: William (Drew) Byron
@@ -9,7 +9,12 @@ License: MIT License
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3.7
 Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
 License-File: LICENSE.txt
 
-UNKNOWN
+## [Project Documentation](https://github.com/drewbyron/pytorch-tutorials/blob/main/README.md)
+
+ ## [Project YouTube Channel](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg/featured)
+
+
 

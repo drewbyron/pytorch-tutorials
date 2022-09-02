@@ -2,8 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='pytorch_tutorials',
-    version='0.2.15',    
+    version='0.2.19',    
     description='A resource for learning about PyTorch and deep learning.',
+    long_description=
+    "## [Project Documentation](https://github.com/drewbyron/pytorch-tutorials/blob/main/README.md)\n\n ## [Project YouTube Channel](https://www.youtube.com/channel/UCORZQS8pVWrPyY3-OpvNkcg/featured)\n\n",
+    long_description_content_type='text/markdown',
     url='https://github.com/drewbyron/pytorch-tutorials',
     author='William (Drew) Byron',
     author_email='william.andrew.byron@gmail.com',

@@ -18,6 +18,28 @@
 
 # Intro to Computer Vision Documentation
 
+## Instructions: 
+
+**installation of package**: 
+
+`pip install pytorch-tutorials==0.2.19`
+
+**example of how to use the below classes and methods**: 
+
+```
+# import
+from pytorch_tutorials.intro_to_computer_vision import cv_utility
+from pytorch_tutorials.intro_to_computer_vision import cv_datasets
+from pytorch_tutorials.intro_to_computer_vision import cv_models
+from pytorch_tutorials.intro_to_computer_vision import cv_pl_data_modules
+
+# Grab a pytorch dataset for testing an object detection / image segmentation model. 
+instance_seg_dataset = cv_pl_data_modules.ObjectDetection_DS(ds_size = 4, img_size = 256, shapes_per_image=(3,8), target_masks=True, rand_seed = 123456)
+
+# Grab a torch lightning datamodule for testing an object detection / image segmentation model. 
+instance_seg_dm = cv_pl_data_modules.ObjectDetection_DM(train_val_size = 1000, train_val_split = (.9,.1), test_size = 100, batch_size=4, img_size = 256, shapes_per_image=(3,8), target_masks=True, rand_seed = 123456)
+
+```
 
 ## Table of Contents  
 - [cv_datasets](#cv_datasets)  
