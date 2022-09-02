@@ -20,7 +20,7 @@
 
 ## Instructions: 
 
-**installation of package**: 
+**installation of [PyPI package](https://pypi.org/project/pytorch-tutorials/)**: 
 
 `pip install pytorch-tutorials==0.2.19`
 
