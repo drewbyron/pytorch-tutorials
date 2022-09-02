@@ -29,11 +29,11 @@
 *Note*: For more details on how to use the package, look at the end of the 
 videos/notebooks in the [computer vision tutorial series](https://github.com/drewbyron/pytorch-tutorials/blob/main/README.md#intro-to-computer-vision).
 ```
-# torch imports
+# torch imports.
 import torch
 from torchvision.utils import make_grid
 
-# pytorch_tutorials imports
+# pytorch_tutorials imports.
 from pytorch_tutorials.intro_to_computer_vision import cv_utility
 from pytorch_tutorials.intro_to_computer_vision import cv_datasets
 from pytorch_tutorials.intro_to_computer_vision import cv_models
