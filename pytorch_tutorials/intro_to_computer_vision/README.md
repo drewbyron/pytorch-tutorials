@@ -35,11 +35,11 @@ from pytorch_tutorials.intro_to_computer_vision import cv_datasets
 from pytorch_tutorials.intro_to_computer_vision import cv_models
 from pytorch_tutorials.intro_to_computer_vision import cv_pl_data_modules
 
-# ------------------------Example 1----------------------------------------------
+# ------------------------Example 1: Datasets-------------------------------------------
 # Grab a pytorch dataset for testing an object detection / image segmentation model. 
 instance_seg_dataset = cv_pl_data_modules.ObjectDetection_DS(ds_size = 4, img_size = 256, shapes_per_image=(3,8), target_masks=True, rand_seed = 123456)
 
-# ------------------------Example 2----------------------------------------------
+# ------------------------Example 2: Datamodules----------------------------------------
 
 # Grab a torch lightning datamodule for testing an object detection / image segmentation model. 
 instance_seg_dm = cv_pl_data_modules.ObjectDetection_DM(train_val_size = 1000, train_val_split = (.9,.1), test_size = 100, batch_size=4, img_size = 256, shapes_per_image=(3,8), target_masks=True, rand_seed = 123456)
@@ -61,6 +61,24 @@ target_images = display_masks_rcnn(target_images, targets, instance_seg_dm.class
 # Visualize.
 grid = make_grid(target_images)
 cv_utility.show(grid, figsize = (20, 20))
+
+# ------------------------Example 2: Models---------------------------------------------
+
+# Make a random image to test the model.
+img_size = 16
+batch_size = 4
+x = torch.rand((batch_size, 3, img_size,img_size))
+
+# Grab the model.
+model = cv_models.get_maskrcnn(num_classes = 2, pretrained = True)
+
+# Predict.
+model.eval()
+output = model(x)
+
+# Look at output.
+print(f"Input shape:\n {x.shape} \n" )
+print(f"Mask RCNN Output (dict keys):\n {output[0].keys()}")
 ```
 
 ## Table of Contents  
