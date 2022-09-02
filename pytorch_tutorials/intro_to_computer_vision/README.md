@@ -26,6 +26,8 @@
 
 **example of how to use the below classes and methods**: 
 
+*Note*: For more details on how to use the package, look at the end of the 
+videos/notebooks in the [tutorial series](https://github.com/drewbyron/pytorch-tutorials/blob/main/README.md).
 ```
 # import
 from pytorch_tutorials.intro_to_computer_vision import cv_utility
@@ -33,12 +35,32 @@ from pytorch_tutorials.intro_to_computer_vision import cv_datasets
 from pytorch_tutorials.intro_to_computer_vision import cv_models
 from pytorch_tutorials.intro_to_computer_vision import cv_pl_data_modules
 
+# ------------------------Example 1----------------------------------------------
 # Grab a pytorch dataset for testing an object detection / image segmentation model. 
 instance_seg_dataset = cv_pl_data_modules.ObjectDetection_DS(ds_size = 4, img_size = 256, shapes_per_image=(3,8), target_masks=True, rand_seed = 123456)
+
+# ------------------------Example 2----------------------------------------------
 
 # Grab a torch lightning datamodule for testing an object detection / image segmentation model. 
 instance_seg_dm = cv_pl_data_modules.ObjectDetection_DM(train_val_size = 1000, train_val_split = (.9,.1), test_size = 100, batch_size=4, img_size = 256, shapes_per_image=(3,8), target_masks=True, rand_seed = 123456)
 
+# Grab a training batch.
+instance_seg_dm.setup(stage = "fit")
+dataiter = iter(instance_seg_dm.train_dataloader())
+imgs, targets = dataiter.next()
+
+# Turn batch tensor into list of images.
+target_images = [img for img in imgs]
+
+# Add target bounding boxes to images.
+target_images = cv_utility.display_boxes(target_images, targets, instance_seg_dm.class_map, width=1, fill = True)
+
+# Add target masks to images. 
+target_images = display_masks_rcnn(target_images, targets, instance_seg_dm.class_map)
+
+# Visualize.
+grid = make_grid(target_images)
+cv_utility.show(grid, figsize = (20, 20))
 ```
 
 ## Table of Contents  
