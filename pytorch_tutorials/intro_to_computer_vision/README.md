@@ -29,7 +29,11 @@
 *Note*: For more details on how to use the package, look at the end of the 
 videos/notebooks in the [computer vision tutorial series](https://github.com/drewbyron/pytorch-tutorials/blob/main/README.md#intro-to-computer-vision).
 ```
-# import
+# torch imports
+import torch
+from torchvision.utils import make_grid
+
+# pytorch_tutorials imports
 from pytorch_tutorials.intro_to_computer_vision import cv_utility
 from pytorch_tutorials.intro_to_computer_vision import cv_datasets
 from pytorch_tutorials.intro_to_computer_vision import cv_models
@@ -62,7 +66,7 @@ target_images = display_masks_rcnn(target_images, targets, instance_seg_dm.class
 grid = make_grid(target_images)
 cv_utility.show(grid, figsize = (20, 20))
 
-# ------------------------Example 2: Models---------------------------------------------
+# ------------------------Example 3: Models---------------------------------------------
 
 # Make a random image to test the model.
 img_size = 16
